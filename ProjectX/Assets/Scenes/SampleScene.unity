@@ -461,8 +461,8 @@ MonoBehaviour:
   playerSpeed: 2
   jumpForce: 500
   smoothTime: 0.05
-  health: 3
-  invincibleTime: 0
+  health: 5
+  invincibleTime: 2
 --- !u!61 &1319463380
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
 
     private Rigidbody2D rb;
     private bool isGrounded = true;
+    private bool invincible = false;
     private Vector2 jumpForceVector;
     private Vector3 scaleVector = new Vector3(1, 1, 1);
     private Vector3 referencedVelocity = Vector3.zero;
@@ -78,6 +79,7 @@ public class Player : MonoBehaviour
         if (Time.time - previousTime > invincibleTime)
         {
             animator.SetBool("HitHarmfulObjects", false);
+            invincible = false;
         }
     }
 
@@ -90,14 +92,17 @@ public class Player : MonoBehaviour
         }
 
         // harmful objects 
-        if (collision.collider.tag == "harmfulObjects")
+        if (collision.collider.tag == "harmfulObjects" && !invincible)
         {
             // minus however the damage is
             // this will vary base on the object type (i.e. lava, enemies)
             // this is assuming we are not using a discrete health system
             health -= 1;
             animator.SetBool("HitHarmfulObjects", true);
+            invincible = true;
             previousTime = Time.time;
+            Debug.Log("I hit harmful object");
+
         }
     }
 }
