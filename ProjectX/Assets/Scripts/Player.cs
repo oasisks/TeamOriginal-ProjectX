@@ -42,7 +42,11 @@ public class Player : MonoBehaviour
     {
         // basic movement
         Vector3 velocity = Vector2.zero;
-        velocity.x = Input.GetAxis("Horizontal");
+        if(Input.GetKey(KeyCode.A)) {
+            velocity.x = -1;
+        } else if(Input.GetKey(KeyCode.D)) {
+            velocity.x = 1;
+        }
 
         velocity = velocity.normalized * playerSpeed;
         rb.velocity = Vector3.SmoothDamp(rb.velocity, velocity, ref referencedVelocity, smoothTime);
