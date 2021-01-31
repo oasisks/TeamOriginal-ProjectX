@@ -347,19 +347,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3666548633488323897, guid: 38f177ec5a4e0c749b914bb7f5fc5884, type: 3}
       propertyPath: m_Size.x
-      value: 0.46126765
+      value: 0.4706431
       objectReference: {fileID: 0}
     - target: {fileID: 3666548633488323897, guid: 38f177ec5a4e0c749b914bb7f5fc5884, type: 3}
       propertyPath: m_Size.y
+<<<<<<< Updated upstream
       value: 0.7264198
+=======
+      value: 0.74582326
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 3666548633488323897, guid: 38f177ec5a4e0c749b914bb7f5fc5884, type: 3}
       propertyPath: m_Offset.x
-      value: 0.019412547
+      value: 0.014432311
       objectReference: {fileID: 0}
     - target: {fileID: 3666548633488323897, guid: 38f177ec5a4e0c749b914bb7f5fc5884, type: 3}
       propertyPath: m_Offset.y
+<<<<<<< Updated upstream
       value: -0.118074715
+=======
+      value: -0.12753075
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 5258425121589888171, guid: 38f177ec5a4e0c749b914bb7f5fc5884, type: 3}
       propertyPath: m_RootOrder
@@ -411,11 +419,55 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7128418704429834322, guid: 38f177ec5a4e0c749b914bb7f5fc5884, type: 3}
       propertyPath: jumpForce
+<<<<<<< Updated upstream
       value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 7128418704429834322, guid: 38f177ec5a4e0c749b914bb7f5fc5884, type: 3}
       propertyPath: playerSpeed
       value: 3
+=======
+      value: 2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 7128418704429834322, guid: 38f177ec5a4e0c749b914bb7f5fc5884, type: 3}
+      propertyPath: maxJumpTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7128418704429834322, guid: 38f177ec5a4e0c749b914bb7f5fc5884, type: 3}
+      propertyPath: playerSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7128418704429834322, guid: 38f177ec5a4e0c749b914bb7f5fc5884, type: 3}
+      propertyPath: holdJumpForce
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 7128418704429834322, guid: 38f177ec5a4e0c749b914bb7f5fc5884, type: 3}
+      propertyPath: initialJumpForce
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7128418704429834322, guid: 38f177ec5a4e0c749b914bb7f5fc5884, type: 3}
+      propertyPath: gravityMultiplier
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8291307882454747138, guid: 38f177ec5a4e0c749b914bb7f5fc5884, type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8291307882454747138, guid: 38f177ec5a4e0c749b914bb7f5fc5884, type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8291307882454747138, guid: 38f177ec5a4e0c749b914bb7f5fc5884, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8291307882454747138, guid: 38f177ec5a4e0c749b914bb7f5fc5884, type: 3}
+      propertyPath: m_GravityScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8291307882454747138, guid: 38f177ec5a4e0c749b914bb7f5fc5884, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38f177ec5a4e0c749b914bb7f5fc5884, type: 3}

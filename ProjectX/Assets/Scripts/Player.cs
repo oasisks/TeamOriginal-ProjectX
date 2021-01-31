@@ -4,22 +4,28 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField]
-    private float playerSpeed;
-    [SerializeField]
-    private float jumpForce;
-    [SerializeField]
-    private float smoothTime;
-    [SerializeField]
-    private float health; // we may change this to hearts (i.e. a player has 3 hearts and if all three hearts are gone then you die)
-    [SerializeField]
-    private float invincibleTime;
+    [Header("Movement")]
+    [SerializeField] private float playerSpeed;
+    //TODO: different move speed in air?
+    //[SerializeField] float airSpeed; //The movement speed when in the air
+    //[SerializeField] float movAccel; //The maximum change in velocity the player can do on the ground. This determines how responsive the character will be when on the ground.
+    //[SerializeField] float airMovAccel; //The maximum change in velocity the player can do in the air. This determines how responsive the character will be in the air.
+    [SerializeField] private float smoothTime;
 
+    [Header("Jump")]
+    [SerializeField] float initialJumpForce;        //The force applied to the player when starting to jump
+    [SerializeField] float holdJumpForce;           //The force applied to the character when holding the jump button
+    [SerializeField] float maxJumpTime;             //The maximum amount of time the player can hold the jump button
+    [SerializeField] float gravityMultiplier = 2.7f;
+
+    [Header("Misc")]
+    [SerializeField] private float health; // we may change this to hearts (i.e. a player has 3 hearts and if all three hearts are gone then you die)
+    [SerializeField] private float invincibleTime;
 
     private Rigidbody2D rb;
     private bool isGrounded = true;
     private bool invincible = false;
-    private Vector2 jumpForceVector;
+    //private Vector2 jumpForceVector;
     private Vector3 scaleVector = new Vector3(1, 1, 1);
     private Vector3 referencedVelocity = Vector3.zero;
     private float previousTime; 
@@ -27,12 +33,13 @@ public class Player : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        jumpForceVector = new Vector2(0, jumpForce);
+        //jumpForceVector = new Vector2(0, jumpForce);
         animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
+        rb.AddForce(gravityMultiplier * Physics2D.gravity * rb.mass, ForceMode2D.Force);
         PlayerMovement();
         Death();
         ResetInvincibleAnim();
@@ -42,7 +49,7 @@ public class Player : MonoBehaviour
     {
         // basic movement
         Vector3 velocity = Vector2.zero;
-        if(Input.GetKey(KeyCode.A)) {
+        if(Input.GetKey(KeyCode.A)) { //don't use getaxis horizontal
             velocity.x = -1;
         } else if(Input.GetKey(KeyCode.D)) {
             velocity.x = 1;
@@ -66,8 +73,28 @@ public class Player : MonoBehaviour
         // jumping 
         if (Input.GetKeyDown(KeyCode.W) && isGrounded)
         {
-            rb.AddForce(jumpForceVector);
+            //rb.AddForce(jumpForceVector);
             isGrounded = false;
+
+            rb.AddForce(Vector3.up * initialJumpForce * rb.mass, ForceMode2D.Impulse);
+
+            StartCoroutine(JumpCoroutine());
+        }
+    }
+
+    IEnumerator JumpCoroutine()
+    {
+
+        //Counts for how long we've been jumping
+        float jumpTimeCounter = 0;
+
+        while (Input.GetKey(KeyCode.W) && jumpTimeCounter < maxJumpTime)
+        {
+            jumpTimeCounter += Time.deltaTime;
+
+            rb.AddForce(Vector3.up * holdJumpForce * rb.mass * (1- jumpTimeCounter / maxJumpTime), ForceMode2D.Force);
+
+            yield return null;
         }
     }
 
