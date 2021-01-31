@@ -49,6 +49,7 @@ public class Player : MonoBehaviour
         }
 
         velocity = velocity.normalized * playerSpeed;
+        animator.SetFloat("Speed", Mathf.Abs(velocity.magnitude));
         rb.velocity = Vector3.SmoothDamp(rb.velocity, velocity, ref referencedVelocity, smoothTime);
 
         // flip the duck towards the direction the duck is moving
