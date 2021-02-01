@@ -198,6 +198,7 @@ MonoBehaviour:
   SolidTiles: {fileID: 9158831213028683323}
   NotSolidTiles: {fileID: 773656648371128722}
   secondsUntilFall: 2
+  rotatable: 1
 --- !u!156049354 &1204649684306292639
 Grid:
   m_ObjectHideFlags: 0

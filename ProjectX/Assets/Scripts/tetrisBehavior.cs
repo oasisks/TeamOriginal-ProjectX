@@ -9,6 +9,7 @@ public class tetrisBehavior : MonoBehaviour
     [SerializeField] private Tilemap SolidTiles;
     [SerializeField] private Tilemap NotSolidTiles;
     [SerializeField] private float secondsUntilFall;
+    [SerializeField] public bool rotatable;
 
     private List<Vector3> tileWorldLocations;
     private Transform rot_center;
@@ -152,7 +153,7 @@ public class tetrisBehavior : MonoBehaviour
             tryPosChange(new Vector3Int(-1, 0, 0));
         } else if (getKey(KeyCode.RightArrow)) {  // Move right
             tryPosChange(new Vector3Int(1, 0, 0));
-        } else if (getKey(KeyCode.UpArrow)) { // Rotate
+        } else if (rotatable && getKey(KeyCode.UpArrow)) { // Rotate
             //transform.Rotate(0, 0, 90);
             transform.RotateAround(rot_center.position, Vector3.forward, 90);
 
