@@ -120,6 +120,7 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log(collision.collider.name);
         // ground collision for jumping
         if (collision.collider.gameObject.layer == LayerMask.NameToLayer("ground"))
         {
