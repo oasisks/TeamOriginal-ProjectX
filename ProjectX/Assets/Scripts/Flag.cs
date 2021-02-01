@@ -13,10 +13,14 @@ public class Flag : MonoBehaviour
 
     private AudioSource audio;
 
+    private QueueAudioClip musicManager;
+
     private void Start()
     {
         anim = GetComponent<Animator>();
         audio = GetComponent<AudioSource>();
+
+        musicManager = GameObject.FindGameObjectWithTag("MusicManager").GetComponent<QueueAudioClip>();
     }
     private void Update()
     {
@@ -32,6 +36,8 @@ public class Flag : MonoBehaviour
     {
         Debug.Log("I got triggered");
         audio.Play();
+
+        musicManager.StopMusic();
 
         if (collision.gameObject.tag == "Player")
         {

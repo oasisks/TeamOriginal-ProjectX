@@ -29,7 +29,7 @@ public class QueueAudioClip: MonoBehaviour
         }
     }
 
-    void StopMusic() {
+    public void StopMusic() {
         audioSources[i].Stop();
     }
 }
