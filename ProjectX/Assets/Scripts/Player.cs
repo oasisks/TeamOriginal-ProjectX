@@ -43,6 +43,10 @@ public class Player : MonoBehaviour
 
     worldHandler World;
 
+    public AudioSource walkAudioSource;
+    public AudioSource jumpAudioSource;
+    public float walkVol;
+
 
     private void Start()
     {
@@ -57,10 +61,10 @@ public class Player : MonoBehaviour
         rb.AddForce(gravityMultiplier * Physics2D.gravity * rb.mass, ForceMode2D.Force);
         belowTile = CheckGround();
         withinTile = CheckTileWithin(); //get squished
-        Death(); 
+        Death();
 
         PlayerMovement();
-        ResetInvincibleAnim();        
+        ResetInvincibleAnim();
     }
 
     private void PlayerMovement()
@@ -72,6 +76,8 @@ public class Player : MonoBehaviour
         } else if(Input.GetKey(KeyCode.D)) {
             velocity.x += 1;
         }
+
+        if (isGrounded) walkAudioSource.volume = velocity.magnitude*walkVol;
 
         rb.MovePosition(rb.position + velocity * playerSpeed * Time.deltaTime);
         //transform.Translate(velocity * playerSpeed * Time.deltaTime);
@@ -91,7 +97,7 @@ public class Player : MonoBehaviour
         }
         transform.localScale = scaleVector;
 
-        // jumping 
+        // jumping
         if (Input.GetKeyDown(KeyCode.W) && isGrounded)
         {
             //rb.AddForce(jumpForceVector);
@@ -107,6 +113,9 @@ public class Player : MonoBehaviour
     {
         //Counts for how long we've been jumping
         float jumpTimeCounter = 0;
+
+        walkAudioSource.volume = 0;
+        jumpAudioSource.Play();
 
         while (Input.GetKey(KeyCode.W) && jumpTimeCounter < maxJumpTime)
         {
@@ -145,7 +154,7 @@ public class Player : MonoBehaviour
             isGrounded = true;
         }*/
 
-        // harmful objects 
+        // harmful objects
         if (collision.collider.tag == "harmfulObjects" && !invincible)
         {
             // minus however the damage is
@@ -195,5 +204,5 @@ public class Player : MonoBehaviour
         }
 
         return World.getTile_GlobalPos(transform.position);
-    } 
+    }
 }
