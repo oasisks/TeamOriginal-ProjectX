@@ -16,12 +16,12 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         spawner = transform.GetChild(0).GetComponent<Transform>();
+        player = Instantiate(playerPrefab, spawner.transform.position, Quaternion.identity);
     }
 
     private void Start()
     {
         flag = GameObject.FindGameObjectWithTag("Flag").GetComponent<Flag>();
-        player = Instantiate(playerPrefab, spawner.transform.position, Quaternion.identity);
         spawnNext(); //TODO: move to update, spawn tetris block when the previous one gets deleted
     }
 
