@@ -28,4 +28,8 @@ public class QueueAudioClip: MonoBehaviour
             changeClip = false;
         }
     }
+
+    void StopMusic() {
+        audioSources[i].Stop();
+    }
 }
