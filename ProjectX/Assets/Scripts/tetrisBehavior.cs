@@ -25,8 +25,6 @@ public class tetrisBehavior : MonoBehaviour
     private float lastKeyDown;
     private float timeKeyPressed;
 
-    private AudioSource audio;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -48,8 +46,6 @@ public class tetrisBehavior : MonoBehaviour
         if (!isValidGridPos()) {
             print("KILLED ON START"); //TODO: make this game over
         }
-
-        audio = GetComponent<AudioSource>();
     }
 
     /*public void AlignCenter() {
@@ -114,8 +110,6 @@ public class tetrisBehavior : MonoBehaviour
             }
             //GameObject obj = child.gameObject;
         }
-
-        audio.Play();
 
         print("Done\n");
         gm.spawnNext();
