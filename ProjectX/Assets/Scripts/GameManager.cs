@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -28,6 +30,11 @@ public class GameManager : MonoBehaviour
         if (flag.hasPassedLevel)
         {
             // we show a UI congratulating/switch levels/etc.
+            
+            // UI
+
+            // switches the level
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 
