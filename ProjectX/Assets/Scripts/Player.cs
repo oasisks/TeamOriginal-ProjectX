@@ -56,8 +56,8 @@ public class Player : MonoBehaviour
             velocity.x += 1;
         }
 
-        //rb.MovePosition(rb.position + velocity * playerSpeed * Time.deltaTime);
-        transform.Translate(velocity * playerSpeed * Time.deltaTime);
+        rb.MovePosition(rb.position + velocity * playerSpeed * Time.deltaTime);
+        //transform.Translate(velocity * playerSpeed * Time.deltaTime);
         animator.SetFloat("Speed", Mathf.Abs(velocity.magnitude));
 
         //velocity = velocity.normalized * playerSpeed;
@@ -80,7 +80,7 @@ public class Player : MonoBehaviour
             //rb.AddForce(jumpForceVector);
             isGrounded = false;
 
-            rb.AddForce(Vector3.up * initialJumpForce * rb.mass, ForceMode2D.Impulse);
+            rb.AddForce(Vector3.up * initialJumpForce * rb.mass);
 
             StartCoroutine(JumpCoroutine());
         }
@@ -88,7 +88,6 @@ public class Player : MonoBehaviour
 
     IEnumerator JumpCoroutine()
     {
-
         //Counts for how long we've been jumping
         float jumpTimeCounter = 0;
 
