@@ -111,6 +111,10 @@ PrefabInstance:
       propertyPath: m_Tiles.Array.data[0].second.m_TileObjectToInstantiateIndex
       value: 65535
       objectReference: {fileID: 0}
+    - target: {fileID: 2273154707875220525, guid: e4172cc3b22d91b4cb8c911e79b15d50, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 30130f0d86271f643a8ed681a42aa749, type: 2}
     - target: {fileID: 2490020283934649615, guid: e4172cc3b22d91b4cb8c911e79b15d50, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -127,6 +131,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 8674763517561505566, guid: e4172cc3b22d91b4cb8c911e79b15d50, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 30130f0d86271f643a8ed681a42aa749, type: 2}
     - target: {fileID: 9135885567865857709, guid: e4172cc3b22d91b4cb8c911e79b15d50, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -461,5 +469,9 @@ PrefabInstance:
       propertyPath: m_TagString
       value: entityWithinTetrisBlock
       objectReference: {fileID: 0}
+    - target: {fileID: 7392760040968431928, guid: e152f25ff3726c442b7604e6b0aaa651, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e152f25ff3726c442b7604e6b0aaa651, type: 3}

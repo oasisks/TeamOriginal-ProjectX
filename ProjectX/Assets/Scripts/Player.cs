@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Player : MonoBehaviour
 {
@@ -18,6 +19,11 @@ public class Player : MonoBehaviour
     [SerializeField] float maxJumpTime;             //The maximum amount of time the player can hold the jump button
     [SerializeField] float gravityMultiplier = 2.7f;
 
+    [Header("Ground detection")]
+    [SerializeField] float groundCastRadius;
+    [SerializeField] float groundCastDist;
+    [SerializeField] ContactFilter2D groundFilter;
+
     [Header("Misc")]
     [SerializeField] private float health; // we may change this to hearts (i.e. a player has 3 hearts and if all three hearts are gone then you die)
     [SerializeField] private float invincibleTime;
@@ -31,19 +37,30 @@ public class Player : MonoBehaviour
     private float previousTime;
     private float horizontalScalar;
     private Animator animator;
+
+    private TileBase belowTile;
+    private TileBase withinTile;
+
+    worldHandler World;
+
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         //jumpForceVector = new Vector2(0, jumpForce);
         animator = GetComponent<Animator>();
+        World = FindObjectOfType<worldHandler>(); //TODO: Find by tag?
     }
 
     private void Update()
     {
         rb.AddForce(gravityMultiplier * Physics2D.gravity * rb.mass, ForceMode2D.Force);
+        belowTile = CheckGround();
+        withinTile = CheckTileWithin(); //get squished
+        Death(); 
+
         PlayerMovement();
-        Death();
-        ResetInvincibleAnim();
+        ResetInvincibleAnim();        
     }
 
     private void PlayerMovement()
@@ -120,12 +137,13 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log(collision.collider.name);
+        //Debug.Log(collision.collider.name);
+        /*
         // ground collision for jumping
         if (collision.collider.gameObject.layer == LayerMask.NameToLayer("ground"))
         {
             isGrounded = true;
-        }
+        }*/
 
         // harmful objects 
         if (collision.collider.tag == "harmfulObjects" && !invincible)
@@ -141,4 +159,41 @@ public class Player : MonoBehaviour
 
         }
     }
+
+    private TileBase CheckGround()
+    {
+        //If DoGroundCast returns Vector2.zero (it's the same as Vector2(0, 0)) it means it didn't hit the ground and therefore we are not grounded.
+        isGrounded = DoGroundCast() != Vector2.zero;
+        if(isGrounded) {
+            Vector3 pos = transform.position;
+            pos.y -= 1;
+            pos.z = 0;
+            return World.getTile_GlobalPos(pos); // Get Tile Below
+        } else {
+            return null;
+        }
+    }
+
+    Vector2 DoGroundCast()
+    {
+        //We will use this array to get what the CircleCast returns. The size of this array determines how many results we will get.
+        //Note that we have a size of 2, that's because we are always going to get the player as the first element, since the cast
+        //has its origin inside the player's collider.
+        RaycastHit2D[] hits = new RaycastHit2D[2];
+
+        if (Physics2D.CircleCast(transform.position, groundCastRadius, Vector3.down, new ContactFilter2D(), hits, groundCastDist) > 1)
+        {
+            return hits[1].normal;
+        }
+
+        return Vector2.zero;
+    }
+
+    private TileBase CheckTileWithin() {
+        if(World.checkSolidTile_GlobalPos(transform.position)) { // player is inside a solid block, die
+            health = 0;
+        }
+
+        return World.getTile_GlobalPos(transform.position);
+    } 
 }

@@ -44,7 +44,8 @@ public class GameManager : MonoBehaviour
 
     public void spawnNext() {
         Vector3 spawnpos = main_cam.transform.position;
-        spawnpos.y += offset-2;
+        spawnpos.y = Mathf.Round(spawnpos.y+offset-2);
+        spawnpos.x = Mathf.Round(spawnpos.x);
         spawnpos.z = 0;
         // Random Index
         int i = Random.Range(0, tetrisBlocks.Length);

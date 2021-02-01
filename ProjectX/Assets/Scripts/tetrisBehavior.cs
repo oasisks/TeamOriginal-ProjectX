@@ -27,6 +27,7 @@ public class tetrisBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //this.GetComponent<Renderer>().material.color.a = 0.5f;
         m_Grid = transform.GetComponent<Grid>();
         World = FindObjectOfType<worldHandler>(); //TODO: Find by tag?
         gm = FindObjectOfType<GameManager>(); //TODO: Find by tag?

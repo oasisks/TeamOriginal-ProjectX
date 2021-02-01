@@ -170,5 +170,21 @@ MonoBehaviour:
   holdJumpForce: 90
   maxJumpTime: 1
   gravityMultiplier: 3
+  groundCastRadius: 0.2
+  groundCastDist: 0.5
+  groundFilter:
+    useTriggers: 0
+    useLayerMask: 0
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 0
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
   health: 5
   invincibleTime: 2

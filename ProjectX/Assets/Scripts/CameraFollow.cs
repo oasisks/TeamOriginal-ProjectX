@@ -16,7 +16,9 @@ public class CameraFollow : MonoBehaviour
 
     private void Update()
     {
-        Follow();
+        if(player != null) { //TODO: do this properly
+            Follow();
+        }
     }
 
     private void Follow()

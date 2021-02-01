@@ -44,6 +44,12 @@ public class worldHandler : MonoBehaviour
         return null;
     }
 
+    public bool checkSolidTile_GlobalPos(Vector3 globalpos) {
+        Vector3Int cellpos = m_Grid.WorldToCell(globalpos);
+        cellpos.z = 0;
+        return SolidTiles.HasTile(cellpos);
+    }
+
     public void setTile_GlobalPos(Vector3 globalpos, TileBase tile, bool Solid) {
         if(tile == null) {
             return;
