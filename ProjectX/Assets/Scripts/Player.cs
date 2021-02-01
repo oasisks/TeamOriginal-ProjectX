@@ -28,7 +28,8 @@ public class Player : MonoBehaviour
     //private Vector2 jumpForceVector;
     private Vector3 scaleVector = new Vector3(1, 1, 1);
     private Vector3 referencedVelocity = Vector3.zero;
-    private float previousTime; 
+    private float previousTime;
+    private float horizontalScalar;
     private Animator animator;
     private void Start()
     {
@@ -50,14 +51,16 @@ public class Player : MonoBehaviour
         // basic movement
         Vector3 velocity = Vector2.zero;
         if(Input.GetKey(KeyCode.A)) { //don't use getaxis horizontal
-            velocity.x = -1;
+            velocity.x -= 1;
         } else if(Input.GetKey(KeyCode.D)) {
-            velocity.x = 1;
+            velocity.x += 1;
         }
 
-        velocity = velocity.normalized * playerSpeed;
+        transform.Translate(velocity * playerSpeed * Time.deltaTime);
         animator.SetFloat("Speed", Mathf.Abs(velocity.magnitude));
-        rb.velocity = Vector3.SmoothDamp(rb.velocity, velocity, ref referencedVelocity, smoothTime);
+
+        //velocity = velocity.normalized * playerSpeed;
+        //rb.velocity = Vector3.SmoothDamp(rb.velocity, velocity, ref referencedVelocity, smoothTime);
 
         // flip the duck towards the direction the duck is moving
         if (velocity.x < 0)

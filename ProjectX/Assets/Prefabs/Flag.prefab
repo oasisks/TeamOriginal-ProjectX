@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96b224273e9f8e347ab869808ef79fe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animationTime: 0.25
   hasPassedLevel: 0
 --- !u!61 &3052836080272483388
 BoxCollider2D:
