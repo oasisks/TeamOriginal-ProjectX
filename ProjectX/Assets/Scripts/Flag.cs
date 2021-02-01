@@ -11,9 +11,12 @@ public class Flag : MonoBehaviour
     private Animator anim;
     private float previousTime;
 
+    private AudioSource audio;
+
     private void Start()
     {
         anim = GetComponent<Animator>();
+        audio = GetComponent<AudioSource>();
     }
     private void Update()
     {
@@ -28,6 +31,7 @@ public class Flag : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("I got triggered");
+        audio.Play();
 
         if (collision.gameObject.tag == "Player")
         {

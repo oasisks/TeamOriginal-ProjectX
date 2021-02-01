@@ -17,13 +17,15 @@ public class tetrisBehavior : MonoBehaviour
     private Grid m_Grid;
     worldHandler World;
     GameManager gm;
-    
+
     // time of the last fall, used to auto fall
     private float lastFall;
 
     // last key pressed time, to handle long press behavior
     private float lastKeyDown;
     private float timeKeyPressed;
+
+    private AudioSource audio;
 
     // Start is called before the first frame update
     void Start()
@@ -46,6 +48,8 @@ public class tetrisBehavior : MonoBehaviour
         if (!isValidGridPos()) {
             print("KILLED ON START"); //TODO: make this game over
         }
+
+        audio = GetComponent<AudioSource>();
     }
 
     /*public void AlignCenter() {
@@ -73,8 +77,8 @@ public class tetrisBehavior : MonoBehaviour
                 return false;
             }
         }
-        
-        foreach (var pos in NotSolidTiles.cellBounds.allPositionsWithin) {   
+
+        foreach (var pos in NotSolidTiles.cellBounds.allPositionsWithin) {
             Vector3Int localPlace = new Vector3Int(pos.x, pos.y, 0);
             Vector3 place = getWorldCoord(localPlace);
             if (NotSolidTiles.HasTile(localPlace) && World.getTile_GlobalPos(place) != null) {
@@ -89,16 +93,16 @@ public class tetrisBehavior : MonoBehaviour
             Vector3Int localPlace = new Vector3Int(pos.x, pos.y, 0);
             Vector3 place = getWorldCoord(localPlace);
             TileBase tile = SolidTiles.GetTile(localPlace);
-            if (tile != null) 
+            if (tile != null)
             {
                 World.setTile_GlobalPos(place, tile, true);
             }
         }
-        foreach (var pos in NotSolidTiles.cellBounds.allPositionsWithin) {   
+        foreach (var pos in NotSolidTiles.cellBounds.allPositionsWithin) {
             Vector3Int localPlace = new Vector3Int(pos.x, pos.y, 0);
             Vector3 place = getWorldCoord(localPlace);
             TileBase tile = NotSolidTiles.GetTile(localPlace);
-            if (tile != null) 
+            if (tile != null)
             {
                 World.setTile_GlobalPos(place, tile, false);
             }
@@ -111,6 +115,8 @@ public class tetrisBehavior : MonoBehaviour
             //GameObject obj = child.gameObject;
         }
 
+        audio.Play();
+
         print("Done\n");
         gm.spawnNext();
         Destroy(gameObject);
@@ -118,7 +124,7 @@ public class tetrisBehavior : MonoBehaviour
 
     private void tryPosChange(Vector3Int v) {
         transform.position += v;
-        
+
         // See if valid
         if (isValidGridPos()) {
             return; //updateGrid();
@@ -139,12 +145,12 @@ public class tetrisBehavior : MonoBehaviour
         if (pressed) {
             timeKeyPressed = Time.time;
         }
- 
+
         return keyDown || pressed;
     }
 
     // Update is called once per frame
-    void Update() 
+    void Update()
     {
         //if (UIController.isPaused) {
         //    return; // don't do nothing
@@ -175,14 +181,14 @@ public class tetrisBehavior : MonoBehaviour
             }
         } else if (Input.GetKeyDown(KeyCode.Space)) {
             insertInWorld();
-            
-            /*while (enabled) { // fall until the bottom 
+
+            /*while (enabled) { // fall until the bottom
                 fallGroup();
             }*/
         }
     }
 
-    /* 
+    /*
     // update the grid
     void updateGrid() {
         // Remove old children from grid
@@ -192,12 +198,12 @@ public class tetrisBehavior : MonoBehaviour
                     Grid.grid[x,y].parent == transform) {
                     Grid.grid[x,y] = null;
                 }
-            } 
+            }
         }
 
         insertOnGrid();
     }
-    
+
     void fallGroup() {
         // modify
         transform.position += new Vector3(0, -1, 0);
