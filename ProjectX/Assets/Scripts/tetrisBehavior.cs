@@ -75,7 +75,7 @@ public class tetrisBehavior : MonoBehaviour
         foreach (var pos in NotSolidTiles.cellBounds.allPositionsWithin) {   
             Vector3Int localPlace = new Vector3Int(pos.x, pos.y, 0);
             Vector3 place = getWorldCoord(localPlace);
-            if (SolidTiles.HasTile(localPlace) && World.getTile_GlobalPos(place) != null) {
+            if (NotSolidTiles.HasTile(localPlace) && World.getTile_GlobalPos(place) != null) {
                 return false;
             }
         }

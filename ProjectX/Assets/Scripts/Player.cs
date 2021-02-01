@@ -49,13 +49,14 @@ public class Player : MonoBehaviour
     private void PlayerMovement()
     {
         // basic movement
-        Vector3 velocity = Vector2.zero;
+        Vector2 velocity = Vector2.zero;
         if(Input.GetKey(KeyCode.A)) { //don't use getaxis horizontal
             velocity.x -= 1;
         } else if(Input.GetKey(KeyCode.D)) {
             velocity.x += 1;
         }
 
+        //rb.MovePosition(rb.position + velocity * playerSpeed * Time.deltaTime);
         transform.Translate(velocity * playerSpeed * Time.deltaTime);
         animator.SetFloat("Speed", Mathf.Abs(velocity.magnitude));
 
