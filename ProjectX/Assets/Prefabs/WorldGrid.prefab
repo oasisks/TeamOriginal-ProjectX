@@ -29,7 +29,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1680461940367052601}
+  m_Father: {fileID: 7709240741101953042}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1839735485 &2988285687130958872
@@ -45,7 +45,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 0
-      m_TileSpriteIndex: 3
+      m_TileSpriteIndex: 4
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -175,7 +175,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 0
-      m_TileSpriteIndex: 2
+      m_TileSpriteIndex: 3
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -192,12 +192,12 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 12
     m_Data: {fileID: -4827537604736492380, guid: 55ee74a008a6300429ac1a1903daead9, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 1
     m_Data: {fileID: 5043307788359985916, guid: 55ee74a008a6300429ac1a1903daead9, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: -5587653796134901919, guid: 55ee74a008a6300429ac1a1903daead9, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
   m_TileMatrixArray:
   - m_RefCount: 14
     m_Data:
@@ -294,51 +294,6 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
---- !u!1 &6244958718103737620
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1680461940367052601}
-  - component: {fileID: 4820679224171174020}
-  m_Layer: 0
-  m_Name: Grid
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1680461940367052601
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6244958718103737620}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4464658682872299803}
-  - {fileID: 3764923143005586760}
-  m_Father: {fileID: 7709240741101953042}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!156049354 &4820679224171174020
-Grid:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6244958718103737620}
-  m_Enabled: 1
-  m_CellSize: {x: 1, y: 1, z: 1}
-  m_CellGap: {x: 0, y: 0, z: 0}
-  m_CellLayout: 0
-  m_CellSwizzle: 0
 --- !u!1 &7709240741101953052
 GameObject:
   m_ObjectHideFlags: 0
@@ -349,6 +304,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7709240741101953042}
   - component: {fileID: 7709240741101953043}
+  - component: {fileID: 4220302109725136610}
   m_Layer: 0
   m_Name: WorldGrid
   m_TagString: Untagged
@@ -367,7 +323,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1680461940367052601}
+  - {fileID: 4464658682872299803}
+  - {fileID: 3764923143005586760}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -383,11 +340,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffef20722743ca14aa5cff6b93ea35b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Ground: {fileID: 11400000, guid: 27918c12da0a6e04b83b0baa772e7174, type: 2}
-  Spike: {fileID: 0}
-  m_Grid: {fileID: 4820679224171174020}
-  GroundTiles: {fileID: 0}
-  SpikeTiles: {fileID: 0}
+  SolidTiles: {fileID: 2988285687130958872}
+  NotSolidTiles: {fileID: 7227957255816059994}
+  groundTile: {fileID: 11400000, guid: 27918c12da0a6e04b83b0baa772e7174, type: 2}
+--- !u!156049354 &4220302109725136610
+Grid:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7709240741101953052}
+  m_Enabled: 1
+  m_CellSize: {x: 1, y: 1, z: 1}
+  m_CellGap: {x: 0, y: 0, z: 0}
+  m_CellLayout: 0
+  m_CellSwizzle: 0
 --- !u!1 &7851782245063280082
 GameObject:
   m_ObjectHideFlags: 0
@@ -417,7 +384,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1680461940367052601}
+  m_Father: {fileID: 7709240741101953042}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1839735485 &7227957255816059994

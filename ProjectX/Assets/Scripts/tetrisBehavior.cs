@@ -77,7 +77,7 @@ public class tetrisBehavior : MonoBehaviour
             place.z = 0;
             if (tilemap.HasTile(localPlace))
             {
-                World.setTile_GlobalPos(place, tilemap.GetTile(localPlace));
+                World.setTile_GlobalPos(place, tilemap.GetTile(localPlace), true); //TODO: distinguish between solid/notsolid tiles
                 //print(place);
             }
         }

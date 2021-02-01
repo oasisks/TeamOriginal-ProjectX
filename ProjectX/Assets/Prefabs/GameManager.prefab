@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7643028763335990251}
   m_Layer: 0
-  m_Name: Spawner
+  m_Name: PlayerStartLocation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,3 +75,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 5546493769386304302, guid: 38f177ec5a4e0c749b914bb7f5fc5884, type: 3}
+  tetrisBlocks:
+  - {fileID: 5659877145511661449, guid: ad672cc71c70c424b853b0a526f90bb0, type: 3}
+  - {fileID: 5659877145511661449, guid: e4172cc3b22d91b4cb8c911e79b15d50, type: 3}

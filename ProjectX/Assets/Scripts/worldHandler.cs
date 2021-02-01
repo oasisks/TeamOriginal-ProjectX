@@ -5,19 +5,18 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class worldHandler : MonoBehaviour
-{
-    public TileBase Ground;
-	public TileBase Spike;
-	
-	public Grid m_Grid;
-	public Tilemap GroundTiles;
-	public Tilemap SpikeTiles;
+{	
+	private Grid m_Grid;
+	public Tilemap SolidTiles;
+	public Tilemap NotSolidTiles;
+
+    [SerializeField] private TileBase groundTile;
 	//public GridInformation GridInfo;
     
     // Start is called before the first frame update
     void Start()
     {
-        //m_Grid = GetComponent<Grid>();
+        m_Grid = GetComponent<Grid>();
 		//GridInfo = GetComponent<GridInformation>();
 		//m_Foreground = GetComponent<Tilemap>();
 		//m_BackGround = GetComponent<Tilemap>();
@@ -26,42 +25,38 @@ public class worldHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (m_Grid && Input.GetMouseButtonDown(0))
+        if (m_Grid && Input.GetMouseButtonDown(0)) //TESTING
 		{
 			Vector3 world = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-			/*Vector3Int gridPos = m_Grid.WorldToCell(world);
-            gridPos.z = 0;
-            print(gridPos);
-            SpikeTiles.SetTile(gridPos, Spike);*/
-            setTile_GlobalPos(world, Ground);
+            setTile_GlobalPos(world, groundTile, true);
 		}
     }
 
-    public TileBase getTile_GlobalPos(Vector3 position) {
-        Vector3Int place = m_Grid.WorldToCell(position);
-        place.z = 0;
-        TileBase tile = GroundTiles.GetTile(place);
+    public TileBase getTile_GlobalPos(Vector3 globalpos) {
+        Vector3Int cellpos = m_Grid.WorldToCell(globalpos);
+        cellpos.z = 0;
+        TileBase tile = SolidTiles.GetTile(cellpos);
         if(tile != null) {
             return tile;
         }
-        tile = SpikeTiles.GetTile(place);
+        tile = NotSolidTiles.GetTile(cellpos);
         if(tile != null) {
             return tile;
         }
         return null;
     }
 
-    public void setTile_GlobalPos(Vector3 position, TileBase tile) {
+    public void setTile_GlobalPos(Vector3 globalpos, TileBase tile, bool Solid) {
         if(tile == null) {
             return;
         }
-        Vector3Int place = m_Grid.WorldToCell(position);
-        place.z = 0;
-        if(tile == Ground) {
+        Vector3Int cellpos = m_Grid.WorldToCell(globalpos);
+        cellpos.z = 0;
+        if(Solid) {
             //print("Tried to place at" + place);
-            GroundTiles.SetTile(place, Ground);
-        } else if(tile == Spike) {
-            SpikeTiles.SetTile(place, tile);
+            SolidTiles.SetTile(cellpos, tile);
+        } else {
+            NotSolidTiles.SetTile(cellpos, tile);
         }
     }
 }
