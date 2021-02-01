@@ -6,13 +6,18 @@ using UnityEngine.Tilemaps;
 
 public class tetrisBehavior : MonoBehaviour
 {
-    public Tilemap tilemap;
+    [SerializeField] private Tilemap SolidTiles;
+    [SerializeField] private Tilemap NotSolidTiles;
+    [SerializeField] private float secondsUntilFall;
+
     private List<Vector3> tileWorldLocations;
-    //public GameObject World;
+    private Transform rot_center;
+
+    private Grid m_Grid;
     worldHandler World;
+    GameManager gm;
     
-    // time of the last fall, used to auto fall after 
-    // time parametrized by `level`
+    // time of the last fall, used to auto fall
     private float lastFall;
 
     // last key pressed time, to handle long press behavior
@@ -22,33 +27,22 @@ public class tetrisBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        World = FindObjectOfType<worldHandler>();
+        m_Grid = transform.GetComponent<Grid>();
+        World = FindObjectOfType<worldHandler>(); //TODO: Find by tag?
+        gm = FindObjectOfType<GameManager>(); //TODO: Find by tag?
+        rot_center = transform.GetChild(0).GetComponent<Transform>();
         lastFall = Time.time;
         lastKeyDown = Time.time;
         timeKeyPressed = Time.time;
 
         tileWorldLocations = new List<Vector3>();
 
-        foreach (var pos in tilemap.cellBounds.allPositionsWithin)
-        {   
-            Vector3Int localPlace = new Vector3Int(pos.x, pos.y, pos.z);
-            /*Vector3 place = tilemap.CellToWorld(localPlace);
-            if (tilemap.HasTile(localPlace))
-            {
-                tileWorldLocations.Add(place);
-            }*/
-        }
-
-        //print(tileWorldLocations);
-
         foreach (var pos in tileWorldLocations) {
             print(pos);
         }
 
-        if (isValidGridPos()) {
-            //insertOnGrid();
-        } else { 
-            print("KILLED ON START");
+        if (!isValidGridPos()) {
+            print("KILLED ON START"); //TODO: make this game over
         }
     }
 
@@ -57,12 +51,18 @@ public class tetrisBehavior : MonoBehaviour
     }*/
 
     public bool isValidGridPos() {
-        foreach (var pos in tilemap.cellBounds.allPositionsWithin) {   
-            Vector3Int localPlace = new Vector3Int(pos.x, pos.y, pos.z);
-            Vector3 place = tilemap.CellToWorld(localPlace);
-            localPlace.z = 0;
-            place.z = 0;
-            if (tilemap.HasTile(localPlace) && World.getTile_GlobalPos(place) != null) {
+        foreach (var pos in SolidTiles.cellBounds.allPositionsWithin) {   //TODO: concatenate these?
+            Vector3Int localPlace = new Vector3Int(pos.x, pos.y, 0);
+            Vector3 place = m_Grid.CellToWorld(localPlace);
+            if (SolidTiles.HasTile(localPlace) && World.getTile_GlobalPos(place) != null) {
+                return false;
+            }
+        }
+        
+        foreach (var pos in NotSolidTiles.cellBounds.allPositionsWithin) {   
+            Vector3Int localPlace = new Vector3Int(pos.x, pos.y, 0);
+            Vector3 place = m_Grid.CellToWorld(localPlace);
+            if (SolidTiles.HasTile(localPlace) && World.getTile_GlobalPos(place) != null) {
                 return false;
             }
         }
@@ -70,30 +70,46 @@ public class tetrisBehavior : MonoBehaviour
     }
 
     public void insertInWorld() {
-        foreach (var pos in tilemap.cellBounds.allPositionsWithin) {   
-            Vector3Int localPlace = new Vector3Int(pos.x, pos.y, pos.z);
-            Vector3 place = tilemap.CellToWorld(localPlace);
-            localPlace.z = 0;
-            place.z = 0;
-            if (tilemap.HasTile(localPlace))
+        foreach (var pos in SolidTiles.cellBounds.allPositionsWithin) {   //TODO: concatenate these?
+            Vector3Int localPlace = new Vector3Int(pos.x, pos.y, 0);
+            Vector3 place = m_Grid.CellToWorld(localPlace);
+            TileBase tile = SolidTiles.GetTile(localPlace);
+            if (tile != null) 
             {
-                World.setTile_GlobalPos(place, tilemap.GetTile(localPlace), true); //TODO: distinguish between solid/notsolid tiles
-                //print(place);
+                World.setTile_GlobalPos(place, tile, true);
             }
         }
+        foreach (var pos in NotSolidTiles.cellBounds.allPositionsWithin) {   
+            Vector3Int localPlace = new Vector3Int(pos.x, pos.y, 0);
+            Vector3 place = m_Grid.CellToWorld(localPlace);
+            TileBase tile = NotSolidTiles.GetTile(localPlace);
+            if (tile != null) 
+            {
+                World.setTile_GlobalPos(place, tile, false);
+            }
+        }
+
+        foreach(Transform child in this.transform) { //.GetComponentsInChildren<Transform>(checkInactive)) {
+            if(child.gameObject.CompareTag("entityWithinTetrisBlock") == true) {
+                Instantiate(child.gameObject, child.position, child.rotation);
+            }
+            //GameObject obj = child.gameObject;
+        }
+
         print("Done\n");
+        gm.spawnNext();
         Destroy(gameObject);
     }
 
     private void tryPosChange(Vector3Int v) {
         transform.position += v;
-        /*
+        
         // See if valid
         if (isValidGridPos()) {
             return; //updateGrid();
         } else {
             transform.position -= v;
-        }*/
+        }
         return;
     }
 
@@ -122,20 +138,26 @@ public class tetrisBehavior : MonoBehaviour
             tryPosChange(new Vector3Int(-1, 0, 0));
         } else if (getKey(KeyCode.RightArrow)) {  // Move right
             tryPosChange(new Vector3Int(1, 0, 0));
-        }/* else if (getKey(KeyCode.UpArrow)) { // Rotate
-            transform.Rotate(0, 0, -90);
+        } else if (getKey(KeyCode.UpArrow)) { // Rotate
+            //transform.Rotate(0, 0, 90);
+            transform.RotateAround(rot_center.position, Vector3.forward, 90);
 
             // see if valid
             if (isValidGridPos()) {
                 // it's valid. Update grid
-                updateGrid();
             } else {
                 // it's not valid. revert
-                transform.Rotate(0, 0, 90);
+                //transform.Rotate(0, 0, -90);
+                transform.RotateAround(rot_center.position, Vector3.forward, -90);
             }
-        }*/ else if (getKey(KeyCode.DownArrow)/* || (Time.time - lastFall) >= 1*/) {
+        } else if (getKey(KeyCode.DownArrow) || (Time.time - lastFall) >= secondsUntilFall) {
+            lastFall = Time.time;
             //fallGroup();
-            tryPosChange(new Vector3Int(0, -1, 0));
+            transform.position += new Vector3(0, -1, 0);
+            if (!isValidGridPos()){
+                transform.position += new Vector3(0, 1, 0);
+                insertInWorld();
+            }
         } else if (Input.GetKeyDown(KeyCode.Space)) {
             insertInWorld();
             

@@ -166,9 +166,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpeed: 7
   smoothTime: 0.05
-  initialJumpForce: 2
-  holdJumpForce: 5
-  maxJumpTime: 0.5
-  gravityMultiplier: 0.1
+  initialJumpForce: 10
+  holdJumpForce: 10
+  maxJumpTime: 1
+  gravityMultiplier: 1
   health: 5
   invincibleTime: 2

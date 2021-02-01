@@ -18,8 +18,6 @@ public class worldHandler : MonoBehaviour
     {
         m_Grid = GetComponent<Grid>();
 		//GridInfo = GetComponent<GridInformation>();
-		//m_Foreground = GetComponent<Tilemap>();
-		//m_BackGround = GetComponent<Tilemap>();
     }
 
     // Update is called once per frame

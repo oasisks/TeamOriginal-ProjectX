@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     private Flag flag;
     private Transform spawner;
     private GameObject player;
+    private GameObject main_cam;
+    private float offset;
 
     private void Awake()
     {
@@ -22,6 +24,8 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         flag = GameObject.FindGameObjectWithTag("Flag").GetComponent<Flag>();
+        main_cam = GameObject.FindGameObjectWithTag("MainCamera");
+        offset = main_cam.GetComponent<Camera>().orthographicSize;
         spawnNext(); //TODO: move to update, spawn tetris block when the previous one gets deleted
     }
 
@@ -34,15 +38,19 @@ public class GameManager : MonoBehaviour
             // UI
 
             // switches the level
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 
-    private void spawnNext() {
+    public void spawnNext() {
+        Vector3 spawnpos = main_cam.transform.position;
+        spawnpos.y += offset-2;
+        spawnpos.z = 0;
         // Random Index
         int i = Random.Range(0, tetrisBlocks.Length);
 
         // Spawn Group at current Position
-        Instantiate(tetrisBlocks[i], transform.position, Quaternion.identity);
+        Instantiate(tetrisBlocks[i], spawnpos, Quaternion.identity);
+        print("Spawned block");
     }
 }

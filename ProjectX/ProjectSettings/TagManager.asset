@@ -6,6 +6,7 @@ TagManager:
   tags:
   - harmfulObjects
   - Flag
+  - entityWithinTetrisBlock
   layers:
   - Default
   - TransparentFX

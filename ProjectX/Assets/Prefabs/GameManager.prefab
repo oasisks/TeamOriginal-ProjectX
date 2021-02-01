@@ -76,5 +76,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 5546493769386304302, guid: 38f177ec5a4e0c749b914bb7f5fc5884, type: 3}
   tetrisBlocks:
-  - {fileID: 5659877145511661449, guid: ad672cc71c70c424b853b0a526f90bb0, type: 3}
-  - {fileID: 5659877145511661449, guid: e4172cc3b22d91b4cb8c911e79b15d50, type: 3}
+  - {fileID: 7097901935096090068, guid: 7215dbb56ddd25a4ca90a8067622fe3b, type: 3}
+  - {fileID: 7796364526403850679, guid: e8b7f9c5e5338be42a32a7f7f031c76f, type: 3}
+  - {fileID: 8413132686468346657, guid: a574f3803b761e04e9fbda116a594730, type: 3}
