@@ -115,5 +115,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fa04987ed95c7b40937c410b40e683a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stabPeriod: 0
+  stabPeriod: 5
   dangerous: 0

@@ -50,10 +50,23 @@ public class tetrisBehavior : MonoBehaviour
         transform.position += transform.position - Utils.Center(gameObject);
     }*/
 
+    private Vector3 getWorldCoord(Vector3Int pos) { //Hacky hack
+        if(transform.eulerAngles.z == 90) {
+            pos.y += 1;
+        } else if(transform.eulerAngles.z == 180) {
+            pos.x += 1;
+            pos.y += 1;
+        } else if(transform.eulerAngles.z == 270) {
+            pos.x += 1;
+        }
+
+        return m_Grid.CellToWorld(pos);
+    }
+
     public bool isValidGridPos() {
         foreach (var pos in SolidTiles.cellBounds.allPositionsWithin) {   //TODO: concatenate these?
             Vector3Int localPlace = new Vector3Int(pos.x, pos.y, 0);
-            Vector3 place = m_Grid.CellToWorld(localPlace);
+            Vector3 place = getWorldCoord(localPlace);
             if (SolidTiles.HasTile(localPlace) && World.getTile_GlobalPos(place) != null) {
                 return false;
             }
@@ -61,7 +74,7 @@ public class tetrisBehavior : MonoBehaviour
         
         foreach (var pos in NotSolidTiles.cellBounds.allPositionsWithin) {   
             Vector3Int localPlace = new Vector3Int(pos.x, pos.y, 0);
-            Vector3 place = m_Grid.CellToWorld(localPlace);
+            Vector3 place = getWorldCoord(localPlace);
             if (SolidTiles.HasTile(localPlace) && World.getTile_GlobalPos(place) != null) {
                 return false;
             }
@@ -72,7 +85,7 @@ public class tetrisBehavior : MonoBehaviour
     public void insertInWorld() {
         foreach (var pos in SolidTiles.cellBounds.allPositionsWithin) {   //TODO: concatenate these?
             Vector3Int localPlace = new Vector3Int(pos.x, pos.y, 0);
-            Vector3 place = m_Grid.CellToWorld(localPlace);
+            Vector3 place = getWorldCoord(localPlace);
             TileBase tile = SolidTiles.GetTile(localPlace);
             if (tile != null) 
             {
@@ -81,7 +94,7 @@ public class tetrisBehavior : MonoBehaviour
         }
         foreach (var pos in NotSolidTiles.cellBounds.allPositionsWithin) {   
             Vector3Int localPlace = new Vector3Int(pos.x, pos.y, 0);
-            Vector3 place = m_Grid.CellToWorld(localPlace);
+            Vector3 place = getWorldCoord(localPlace);
             TileBase tile = NotSolidTiles.GetTile(localPlace);
             if (tile != null) 
             {
