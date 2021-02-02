@@ -7,27 +7,43 @@ public class Goomba : Enemy
     [Header("Properties")]
     [SerializeField] float horizontalDistance = 5f;
     [SerializeField] float speed = 2f;
+    [SerializeField] float hitDistance = 0.5f;
     [SerializeField] tetrisBehavior tetris;
+    [SerializeField] float dyingAnimTime = 0.25f;
+
+    private float previousTime;
+
     private Transform raycastTransform;
-    private Vector3 direction = Vector3.zero;
-    private Vector3 scale = new Vector3(1, 1, 1);
     private Animator animator;
     private Rigidbody2D rb;
+    private SpriteRenderer spriteRenderer;
+    
+    private Vector3 direction = Vector3.zero;
+    private Vector3 scale = new Vector3(1, 1, 1);
 
+    private bool canMove;
+
+    public bool hasDied;
     private void Awake()
-    {
-        rb = GetComponent<Rigidbody2D>();
+    { 
         raycastTransform = transform.GetChild(0).GetComponent<Transform>();
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         direction.x = 1;
     }
 
     private void Update()
     {
         if (tetris.canActivate)
+        {
+            Activate();
+            canMove = true;
+            tetris.canActivate = false;
+        }
+        if (canMove)
             GoombaMovement();
-        else
-            Deactivate();
+
+        KillGoomba();
     }
 
     private void GoombaMovement()
@@ -54,11 +70,40 @@ public class Goomba : Enemy
         //    Debug.Log(horizontalHit.collider.name);
         transform.Translate(direction * speed * Time.deltaTime);
     }
-    private void Deactivate()
+    
+    private void Activate()
     {
-        // disable gravity
-        rb.gravityScale = 0f;
+        // add a rigidbody component
+        rb = gameObject.AddComponent<Rigidbody2D>();
+        // freeze the z-axis
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+    }
 
-        // Maybe some other stuff (subject to change)
+    private void KillGoomba()
+    {
+        // the goomba gets killed when a player hits it from above
+        Vector3 topCenter = new Vector3(transform.position.x, transform.position.y + spriteRenderer.size.y / 2 + 0.02f, 0);
+        RaycastHit2D upwardHit = Physics2D.Raycast(topCenter, Vector3.up * hitDistance, hitDistance);
+        Debug.DrawLine(topCenter, topCenter + Vector3.up * hitDistance);
+
+
+        if (upwardHit.collider != null)
+        {
+            if (upwardHit.collider.tag == "Player")
+            {
+                // play the animation
+                animator.SetBool("hasDied", true);
+                previousTime = Time.time;
+                hasDied = true;
+            }
+        }
+
+        if (animator.GetBool("hasDied"))
+        {
+            if (Time.time - previousTime > dyingAnimTime)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 }

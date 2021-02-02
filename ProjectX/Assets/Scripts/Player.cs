@@ -171,42 +171,47 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //Debug.Log(collision.collider.name);
-        /*
-        // ground collision for jumping
-        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("ground"))
-        {
-            isGrounded = true;
-        }*/
         // entityWithinTetrisBlock
         // harmful objects
         if (!invincible)
         {
-            if ((collision.collider.tag == "harmfulObjects" || collision.collider.tag == "enemy"))
-            { 
+            if (collision.collider.tag == "harmfulObjects")
+            {
                 // minus however the damage is
                 // this will vary base on the object type (i.e. lava, enemies)
                 // this is assuming we are not using a discrete health system
-                health -= 1;
-                animator.SetBool("HitHarmfulObjects", true);
-                invincible = true;
-                previousTime = Time.time;
+                UpdateHealth();
                 Debug.Log("I hit harmful object");
+            }
+            else if (collision.gameObject.layer == LayerMask.NameToLayer("enemy"))
+            {
+                // for now we are assuming that Goomba is the only enemy
+                Goomba goomba = collision.collider.GetComponent<Goomba>();
+
+                if (!goomba.hasDied)
+                {
+                    UpdateHealth();
+                    Debug.Log("I hit harmful object");
+                }
             }
             else if (collision.collider.tag == "entityWithinTetrisBlock")
             {
                 SpikeBehavior spike = collision.collider.GetComponent<SpikeBehavior>();
                 if (spike.dangerous)
                 {
-                    health -= 1;
-                    animator.SetBool("HitHarmfulObjects", true);
-                    invincible = true;
-                    previousTime = Time.time;
+                    UpdateHealth();
                     Debug.Log("I hit a spike");
                 }
             }
         }
+    }
 
+    private void UpdateHealth()
+    {
+        health -= 1;
+        animator.SetBool("HitHarmfulObjects", true);
+        invincible = true;
+        previousTime = Time.time;
     }
 
     private TileBase CheckGround()

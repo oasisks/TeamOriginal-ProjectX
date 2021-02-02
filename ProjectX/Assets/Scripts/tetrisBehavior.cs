@@ -108,7 +108,11 @@ public class tetrisBehavior : MonoBehaviour
 
         foreach(Transform child in this.transform) { //.GetComponentsInChildren<Transform>(checkInactive)) {
             if(child.gameObject.CompareTag("entityWithinTetrisBlock") == true) {
-                Instantiate(child.gameObject, child.position, child.rotation);
+                // we don't want to rotate the enemy
+                if (child.gameObject.layer == LayerMask.NameToLayer("enemy"))
+                    Instantiate(child.gameObject, child.position, Quaternion.identity);
+                else
+                    Instantiate(child.gameObject, child.position, child.rotation);
             }
             //GameObject obj = child.gameObject;
         }

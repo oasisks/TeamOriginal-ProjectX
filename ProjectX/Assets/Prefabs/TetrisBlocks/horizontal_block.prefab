@@ -631,9 +631,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6243309684202339269}
     m_Modifications:
+    - target: {fileID: 4592386495579894036, guid: a0f47758bff168e429cd645c640346a5, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4592386495909069666, guid: a0f47758bff168e429cd645c640346a5, type: 3}
       propertyPath: m_Name
       value: HatEnemy (Goomba)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4592386495909069666, guid: a0f47758bff168e429cd645c640346a5, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4592386495909069676, guid: a0f47758bff168e429cd645c640346a5, type: 3}
       propertyPath: tetris
