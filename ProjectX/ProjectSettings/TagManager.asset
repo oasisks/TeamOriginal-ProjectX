@@ -8,6 +8,7 @@ TagManager:
   - Flag
   - entityWithinTetrisBlock
   - MusicManager
+  - canvas
   layers:
   - Default
   - TransparentFX

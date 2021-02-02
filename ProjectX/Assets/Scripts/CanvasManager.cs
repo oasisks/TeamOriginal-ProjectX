@@ -9,7 +9,6 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] Button quitButton;
     [SerializeField] Button continueButton;
 
-    [HideInInspector]
     public bool pauseMenuOn = false;
 
     private void Awake()
@@ -44,6 +43,7 @@ public class CanvasManager : MonoBehaviour
 
         // bring the pause menu 
         panel.gameObject.SetActive(true);
+        pauseMenuOn = true;
     }
 
     private void TurnOffPauseMenu()
@@ -53,6 +53,7 @@ public class CanvasManager : MonoBehaviour
 
         // closes the pause menu
         panel.gameObject.SetActive(false);
+        pauseMenuOn = false;
     }
 
     private void Quit()
