@@ -97,12 +97,12 @@ public class Goomba : Enemy
         {
             if (upwardHit.collider.tag == "Player")
             {
+                if (!hasDied) audio.Play();
+
                 // play the animation
                 animator.SetBool("hasDied", true);
                 previousTime = Time.time;
                 hasDied = true;
-
-                audio.Play();
             }
         }
 
