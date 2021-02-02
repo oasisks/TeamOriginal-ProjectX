@@ -40,6 +40,23 @@ public class GameManager : MonoBehaviour
             // switches the level
             //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
+        if (!playerIsAlive())
+        {
+            // TODO: A UI that shows that the player has died.
+            // TODO: A Quit and restart button
+            // restart the level
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+        
+    }
+
+    private bool playerIsAlive()
+    {
+        if (player == null)
+        {
+            return false;
+        }
+        return true;
     }
 
     public void spawnNext() {

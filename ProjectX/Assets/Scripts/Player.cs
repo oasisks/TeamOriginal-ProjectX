@@ -43,10 +43,13 @@ public class Player : MonoBehaviour
 
     worldHandler World;
 
+    // audio
     public AudioSource walkAudioSource;
     public AudioSource jumpAudioSource;
     public float walkVol;
 
+    // canvas
+    private CanvasManager canvas;
 
     private void Start()
     {
@@ -54,6 +57,7 @@ public class Player : MonoBehaviour
         //jumpForceVector = new Vector2(0, jumpForce);
         animator = GetComponent<Animator>();
         World = FindObjectOfType<worldHandler>(); //TODO: Find by tag?
+        canvas = GameObject.FindGameObjectWithTag("canvas").GetComponent<CanvasManager>();
     }
 
     private void Update()
@@ -62,9 +66,10 @@ public class Player : MonoBehaviour
         belowTile = CheckGround();
         withinTile = CheckTileWithin(); //get squished
         Death();
-
-        Move();
         ResetInvincibleAnim();        
+
+        if(!canvas.pauseMenuOn)
+            Move(); // move when pause menu is off
     }
 
     private void Move()
@@ -98,8 +103,7 @@ public class Player : MonoBehaviour
 
         //Apply the velocity change to the character
         rb.AddForce(velocityDelta * rb.mass, ForceMode2D.Impulse);
-
-        animator.SetFloat("Speed", Mathf.Abs(velocity.magnitude));
+        animator.SetFloat("Speed", Mathf.Abs(velocityDelta.magnitude));
         
         //obsolete movement commands (dont use these)
         //keyVelocity = keyVelocity.normalized * playerSpeed;
@@ -174,20 +178,35 @@ public class Player : MonoBehaviour
         {
             isGrounded = true;
         }*/
-
+        // entityWithinTetrisBlock
         // harmful objects
-        if (collision.collider.tag == "harmfulObjects" && !invincible)
+        if (!invincible)
         {
-            // minus however the damage is
-            // this will vary base on the object type (i.e. lava, enemies)
-            // this is assuming we are not using a discrete health system
-            health -= 1;
-            animator.SetBool("HitHarmfulObjects", true);
-            invincible = true;
-            previousTime = Time.time;
-            Debug.Log("I hit harmful object");
-
+            if (collision.collider.tag == "harmfulObjects" && !invincible)
+            { 
+                // minus however the damage is
+                // this will vary base on the object type (i.e. lava, enemies)
+                // this is assuming we are not using a discrete health system
+                health -= 1;
+                animator.SetBool("HitHarmfulObjects", true);
+                invincible = true;
+                previousTime = Time.time;
+                Debug.Log("I hit harmful object");
+            }
+            else if (collision.collider.tag == "entityWithinTetrisBlock")
+            {
+                SpikeBehavior spike = collision.collider.GetComponent<SpikeBehavior>();
+                if (spike.dangerous)
+                {
+                    health -= 1;
+                    animator.SetBool("HitHarmfulObjects", true);
+                    invincible = true;
+                    previousTime = Time.time;
+                    Debug.Log("I hit a spike");
+                }
+            }
         }
+
     }
 
     private TileBase CheckGround()
