@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: -9133909021384955473}
   m_Layer: 0
   m_Name: HatEnemy (Goomba)
-  m_TagString: entityWithinTetrisBlock
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

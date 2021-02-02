@@ -28,6 +28,13 @@ public class Player : MonoBehaviour
     [SerializeField] private float health; // we may change this to hearts (i.e. a player has 3 hearts and if all three hearts are gone then you die)
     [SerializeField] private float invincibleTime;
 
+    [Header("Tiles")]
+    [SerializeField] private TileBase iceTile; 
+    [SerializeField] private TileBase slimeTile;
+    [SerializeField] private TileBase spiderwebTile; 
+    [SerializeField] private TileBase conveyorLeft; 
+    [SerializeField] private TileBase conveyorRight; 
+
     private Rigidbody2D rb;
     private bool isGrounded = true;
     private bool invincible = false;
@@ -77,8 +84,8 @@ public class Player : MonoBehaviour
         Vector2 velocity = rb.velocity;
 
         //calculate the ground direction based on the ground normal
-        Vector2 groundDir = Vector2.Perpendicular(DoGroundCast()).normalized;
-        groundDir.x = -groundDir.x; //Vector2.Perpendicular rotates the vector 90 degrees counter clockwise, inverting X. So here we invert X back to normal
+        //Vector2 groundDir = Vector2.Perpendicular(DoGroundCast().normal).normalized;
+        //groundDir.x = -groundDir.x; //Vector2.Perpendicular rotates the vector 90 degrees counter clockwise, inverting X. So here we invert X back to normal
 
         //The velocity we want our character to have. We get the movement direction, the ground direction and the speed we want (ground speed or air speed)
         Vector2 keyVelocity = new Vector2(0, 0);
@@ -97,6 +104,26 @@ public class Player : MonoBehaviour
 
         //The maximum change in velocity we can do
         float maxDelta = movAccel; /*isGrounded ? movAccel : airMovAccel*/
+
+        if(isGrounded) {
+            if(belowTile == slimeTile) {
+                rb.AddForce(Vector3.up * 2 * rb.mass, ForceMode2D.Impulse); // change force strength?
+            } else if(belowTile == iceTile) {
+                if(targetVelocity.magnitude < velocity.magnitude) { //} || targetVelocity.x*velocity.x <= 0) {
+                    maxDelta = 0.05f;
+                }
+            } else if(belowTile == conveyorLeft) {
+                rb.AddForce(new Vector2(-30, 0) * rb.mass, ForceMode2D.Force);
+            }  else if(belowTile == conveyorRight) {
+                rb.AddForce(new Vector2(30, 0) * rb.mass, ForceMode2D.Force);
+            }
+        } 
+
+        if(withinTile == spiderwebTile) {
+            rb.drag = 100;
+        } else {
+            rb.drag = 0;
+        }
 
         //Clamp the velocity delta to our maximum velocity change, y = 0 because we don't want to move the character vertically
         velocityDelta = new Vector2(Mathf.Clamp(velocityDelta.x, -maxDelta, maxDelta), 0);
@@ -194,7 +221,7 @@ public class Player : MonoBehaviour
                     Debug.Log("I hit harmful object");
                 }
             }
-            else if (collision.collider.tag == "entityWithinTetrisBlock")
+            else if (collision.collider.tag == "entityWithinTetrisBlock") // TODO: check if this is a spike
             {
                 SpikeBehavior spike = collision.collider.GetComponent<SpikeBehavior>();
                 if (spike.dangerous)
@@ -217,10 +244,10 @@ public class Player : MonoBehaviour
     private TileBase CheckGround()
     {
         //If DoGroundCast returns Vector2.zero (it's the same as Vector2(0, 0)) it means it didn't hit the ground and therefore we are not grounded.
-        isGrounded = DoGroundCast() != Vector2.zero;
+        RaycastHit2D hit = DoGroundCast();
         if(isGrounded) {
-            Vector3 pos = transform.position;
-            pos.y -= 1;
+            Vector3 pos = hit.point;
+            pos.y -= 0.5f;
             pos.z = 0;
             return World.getTile_GlobalPos(pos); // Get Tile Below
         } else {
@@ -228,7 +255,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    Vector2 DoGroundCast()
+    private RaycastHit2D DoGroundCast()
     {
         //We will use this array to get what the CircleCast returns. The size of this array determines how many results we will get.
         //Note that we have a size of 2, that's because we are always going to get the player as the first element, since the cast
@@ -237,10 +264,11 @@ public class Player : MonoBehaviour
 
         if (Physics2D.CircleCast(transform.position, groundCastRadius, Vector3.down, new ContactFilter2D(), hits, groundCastDist) > 1)
         {
-            return hits[1].normal;
+            isGrounded = true;
+            return hits[1];
         }
 
-        return Vector2.zero;
+        return new RaycastHit2D();
     }
 
     private TileBase CheckTileWithin() {

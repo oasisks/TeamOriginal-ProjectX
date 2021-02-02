@@ -18,12 +18,12 @@ public class Spring : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(transform.rotation.eulerAngles);
+        //Debug.Log(transform.rotation.eulerAngles);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.tag == "Player")
+        if (collision.collider.tag == "Player" || collision.collider.tag == "Enemy")
         {
             // play the animation
             anim.SetTrigger("Bounce");
@@ -38,7 +38,7 @@ public class Spring : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.collider.tag == "Player")
+        if (collision.collider.tag == "Player" || collision.collider.tag == "Enemy")
         {
             anim.SetTrigger("Bounce");
         }
