@@ -8,9 +8,12 @@ public class Spring : MonoBehaviour
     [SerializeField] float upwardForce;
     private Animator anim;
 
+    private AudioSource audio;
+
     private void Start()
     {
         anim = GetComponent<Animator>();
+        audio = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -28,6 +31,8 @@ public class Spring : MonoBehaviour
             Vector3 forceVector = new Vector3(Mathf.Cos((transform.eulerAngles.z + 90f) * Mathf.Deg2Rad), Mathf.Sin((transform.eulerAngles.z + 90f) * Mathf.Deg2Rad), 0f).normalized;
             Debug.Log(forceVector);
             playerRB.AddForce(forceVector * upwardForce, ForceMode2D.Impulse);
+
+            audio.Play();
         }
     }
 
