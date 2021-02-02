@@ -18,19 +18,24 @@ public class Goomba : Enemy
     private Animator animator;
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
-    
+
     private Vector3 direction = Vector3.zero;
     private Vector3 scale = new Vector3(1, 1, 1);
 
     private bool canMove;
 
     public bool hasDied;
+
+    private AudioSource audio;
+
     private void Awake()
-    { 
+    {
         raycastTransform = transform.GetChild(0).GetComponent<Transform>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         direction.x = 1;
+
+        audio = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -49,7 +54,7 @@ public class Goomba : Enemy
 
     private void GoombaMovement()
     {
-        // enable gravity 
+        // enable gravity
         rb.gravityScale = 1f;
 
         // downward ray
@@ -71,7 +76,7 @@ public class Goomba : Enemy
         //    Debug.Log(horizontalHit.collider.name);
         transform.Translate(direction * speed * Time.deltaTime);
     }
-    
+
     private void Activate()
     {
         // add a rigidbody component
@@ -96,6 +101,8 @@ public class Goomba : Enemy
                 animator.SetBool("hasDied", true);
                 previousTime = Time.time;
                 hasDied = true;
+
+                audio.Play();
             }
         }
 
