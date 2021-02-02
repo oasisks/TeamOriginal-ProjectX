@@ -10,13 +10,13 @@ public class SpikeBehavior : MonoBehaviour
     public bool dangerous;
     private float stabcounter = 0;
 
-    private AudioSource audio;
+    private AudioSource audiosrc;
 
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
-        audio = GetComponent<AudioSource>();
+        audiosrc = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -31,7 +31,7 @@ public class SpikeBehavior : MonoBehaviour
 
     public void setDangerous() { //called by animation
         dangerous = true;
-        audio.Play();
+        audiosrc.Play();
     }
 
     public void setSafe() { //called by animation

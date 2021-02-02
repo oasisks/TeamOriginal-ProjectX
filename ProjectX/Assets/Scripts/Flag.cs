@@ -11,14 +11,14 @@ public class Flag : MonoBehaviour
     private Animator anim;
     private float previousTime;
 
-    private AudioSource audio;
+    private AudioSource audiosrc;
 
     private QueueAudioClip musicManager;
 
     private void Start()
     {
         anim = GetComponent<Animator>();
-        audio = GetComponent<AudioSource>();
+        audiosrc = GetComponent<AudioSource>();
 
         musicManager = GameObject.FindGameObjectWithTag("MusicManager").GetComponent<QueueAudioClip>();
     }
@@ -35,7 +35,7 @@ public class Flag : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("I got triggered");
-        audio.Play();
+        audiosrc.Play();
 
         musicManager.StopMusic();
 

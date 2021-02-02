@@ -6,18 +6,18 @@ using UnityEngine.Tilemaps;
 public class Player : MonoBehaviour
 {
     [Header("Movement")]
-    [SerializeField] private float playerSpeed;
-    //TODO: different move speed in air?
+    [SerializeField] private float playerSpeed; //30
+    //TODO: different move speed in air / water / spiderweb / ice
     //[SerializeField] float airSpeed; //The movement speed when in the air
-    //[SerializeField] float movAccel; //The maximum change in velocity the player can do on the ground. This determines how responsive the character will be when on the ground.
+    [SerializeField] float movAccel; //The maximum change in velocity the player can do on the ground. This determines how responsive the character will be when on the ground.
     //[SerializeField] float airMovAccel; //The maximum change in velocity the player can do in the air. This determines how responsive the character will be in the air.
-    [SerializeField] private float smoothTime;
+    //[SerializeField] private float smoothTime; //0.05
 
     [Header("Jump")]
-    [SerializeField] float initialJumpForce;        //The force applied to the player when starting to jump
-    [SerializeField] float holdJumpForce;           //The force applied to the character when holding the jump button
-    [SerializeField] float maxJumpTime;             //The maximum amount of time the player can hold the jump button
-    [SerializeField] float gravityMultiplier = 2.7f;
+    [SerializeField] float initialJumpForce;    //The force applied to the player when starting to jump
+    [SerializeField] float holdJumpForce;       //The force applied to the character when holding the jump button
+    [SerializeField] float maxJumpTime;         //The maximum amount of time the player can hold the jump button
+    [SerializeField] float gravityMultiplier;   // 2.7?
 
     [Header("Ground detection")]
     [SerializeField] float groundCastRadius;
@@ -63,28 +63,49 @@ public class Player : MonoBehaviour
         withinTile = CheckTileWithin(); //get squished
         Death();
 
-        PlayerMovement();
-        ResetInvincibleAnim();
+        Move();
+        ResetInvincibleAnim();        
     }
 
-    private void PlayerMovement()
+    private void Move()
     {
-        // basic movement
-        Vector2 velocity = Vector2.zero;
+        Vector2 velocity = rb.velocity;
+
+        //calculate the ground direction based on the ground normal
+        Vector2 groundDir = Vector2.Perpendicular(DoGroundCast()).normalized;
+        groundDir.x = -groundDir.x; //Vector2.Perpendicular rotates the vector 90 degrees counter clockwise, inverting X. So here we invert X back to normal
+
+        //The velocity we want our character to have. We get the movement direction, the ground direction and the speed we want (ground speed or air speed)
+        Vector2 keyVelocity = new Vector2(0, 0);
         if(Input.GetKey(KeyCode.A)) { //don't use getaxis horizontal
-            velocity.x -= 1;
+            keyVelocity.x = -1.0f;
         } else if(Input.GetKey(KeyCode.D)) {
-            velocity.x += 1;
+            keyVelocity.x = 1.0f;
         }
 
-        if (isGrounded) walkAudioSource.volume = velocity.magnitude*walkVol;
+        Vector2 targetVelocity = /*groundDir * */keyVelocity * playerSpeed; // * (isGrounded ? movSpeed : airMovSpeed);
+        
 
-        rb.MovePosition(rb.position + velocity * playerSpeed * Time.deltaTime);
-        //transform.Translate(velocity * playerSpeed * Time.deltaTime);
+        if (isGrounded) walkAudioSource.volume = velocity.x*walkVol;
+        //The change in velocity we need to perform to achieve our target velocity
+        Vector2 velocityDelta = targetVelocity - velocity;
+
+        //The maximum change in velocity we can do
+        float maxDelta = movAccel; /*isGrounded ? movAccel : airMovAccel*/
+
+        //Clamp the velocity delta to our maximum velocity change, y = 0 because we don't want to move the character vertically
+        velocityDelta = new Vector2(Mathf.Clamp(velocityDelta.x, -maxDelta, maxDelta), 0);
+
+        //Apply the velocity change to the character
+        rb.AddForce(velocityDelta * rb.mass, ForceMode2D.Impulse);
+
         animator.SetFloat("Speed", Mathf.Abs(velocity.magnitude));
-
-        //velocity = velocity.normalized * playerSpeed;
-        //rb.velocity = Vector3.SmoothDamp(rb.velocity, velocity, ref referencedVelocity, smoothTime);
+        
+        //obsolete movement commands (dont use these)
+        //keyVelocity = keyVelocity.normalized * playerSpeed;
+        //rb.velocity = Vector3.SmoothDamp(rb.velocity, keyVelocity*playerSpeed, ref referencedVelocity, 0.15f);//smoothTime);
+        //rb.MovePosition(rb.position + keyVelocity * playerSpeed * Time.deltaTime);
+        //transform.Translate(keyVelocity * playerSpeed * Time.deltaTime);
 
         // flip the duck towards the direction the duck is moving
         if (velocity.x < 0)
@@ -100,10 +121,11 @@ public class Player : MonoBehaviour
         // jumping
         if (Input.GetKeyDown(KeyCode.W) && isGrounded)
         {
+            jumpAudioSource.Play();
             //rb.AddForce(jumpForceVector);
             isGrounded = false;
 
-            rb.AddForce(Vector3.up * initialJumpForce * rb.mass);
+            rb.AddForce(Vector3.up * initialJumpForce * rb.mass, ForceMode2D.Impulse);
 
             StartCoroutine(JumpCoroutine());
         }
@@ -115,13 +137,12 @@ public class Player : MonoBehaviour
         float jumpTimeCounter = 0;
 
         walkAudioSource.volume = 0;
-        jumpAudioSource.Play();
 
         while (Input.GetKey(KeyCode.W) && jumpTimeCounter < maxJumpTime)
         {
             jumpTimeCounter += Time.deltaTime;
 
-            rb.AddForce(Vector3.up * holdJumpForce * rb.mass * (1- jumpTimeCounter / maxJumpTime), ForceMode2D.Force);
+            rb.AddForce(Vector3.up * holdJumpForce * rb.mass * (1- jumpTimeCounter / maxJumpTime), ForceMode2D.Impulse);
 
             yield return null;
         }
