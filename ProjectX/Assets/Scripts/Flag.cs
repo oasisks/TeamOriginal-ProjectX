@@ -34,16 +34,18 @@ public class Flag : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("I got triggered");
-        audiosrc.Play();
-
-        musicManager.StopMusic();
-
         if (collision.gameObject.tag == "Player")
         {
-            hasPassedLevel = true;
+            // music
+            audiosrc.Play();
+            musicManager.StopMusic();
+            
+            // animation 
             anim.SetBool("HasPassed", true);
             previousTime = Time.time;
+
+            // level passed
+            hasPassedLevel = true;
         }
     }
 }

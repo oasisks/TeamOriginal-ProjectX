@@ -6,10 +6,12 @@ using UnityEngine.Tilemaps;
 
 public class tetrisBehavior : MonoBehaviour
 {
+    [Header("Properties")]
     [SerializeField] private Tilemap SolidTiles;
     [SerializeField] private Tilemap NotSolidTiles;
     [SerializeField] private float secondsUntilFall;
-    [SerializeField] public bool rotatable;
+    public bool rotatable;
+    public bool canActivate = false;
 
     private List<Vector3> tileWorldLocations;
     private Transform rot_center;
@@ -112,6 +114,7 @@ public class tetrisBehavior : MonoBehaviour
         }
 
         print("Done\n");
+        canActivate = true;
         gm.spawnNext();
         Destroy(gameObject);
     }

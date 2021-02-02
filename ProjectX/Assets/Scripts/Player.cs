@@ -182,7 +182,7 @@ public class Player : MonoBehaviour
         // harmful objects
         if (!invincible)
         {
-            if (collision.collider.tag == "harmfulObjects" && !invincible)
+            if ((collision.collider.tag == "harmfulObjects" || collision.collider.tag == "enemy"))
             { 
                 // minus however the damage is
                 // this will vary base on the object type (i.e. lava, enemies)
