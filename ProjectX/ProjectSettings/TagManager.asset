@@ -9,6 +9,7 @@ TagManager:
   - entityWithinTetrisBlock
   - MusicManager
   - canvas
+  - enemy
   layers:
   - Default
   - TransparentFX

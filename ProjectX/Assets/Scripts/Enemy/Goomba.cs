@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class Goomba : Enemy
 {
-    [SerializeField]
-    private float distance = 5f;
-    [SerializeField]
-    private float speed = 2f;
+    [Header("Properties")]
+    [SerializeField] float distance = 5f;
+    [SerializeField] float speed = 2f;
 
     private Transform raycastTransform;
     private Vector3 direction = Vector3.zero;
     private Vector3 scale = new Vector3(1, 1, 1);
+    private Animator animator;
 
     private void Start()
     {
         raycastTransform = transform.GetChild(0).GetComponent<Transform>();
+        animator = GetComponent<Animator>();
         Debug.Log(raycastTransform.name);
         direction.x = 1;
     }
@@ -27,9 +28,12 @@ public class Goomba : Enemy
 
     private void GoombaMovement()
     {
-        RaycastHit2D hit = Physics2D.Raycast(raycastTransform.transform.position, -Vector2.up, distance);
-        Debug.DrawLine(raycastTransform.transform.position, raycastTransform.transform.position - Vector3.up * 5);
-        if (hit.collider == null)
+        // downward ray
+        RaycastHit2D verticalHit = Physics2D.Raycast(raycastTransform.transform.position, -Vector2.up, distance, ~LayerMask.NameToLayer("ground"));
+        Debug.DrawLine(raycastTransform.transform.position, raycastTransform.transform.position - Vector3.up * distance);
+        Debug.Log(verticalHit.collider == null);
+
+        if (verticalHit.collider == null)
         {
             scale.x = -scale.x;
             transform.localScale = scale;

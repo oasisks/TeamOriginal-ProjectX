@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class CanvasManager : MonoBehaviour
 {
+    [Header("Canvas Elements")]
     [SerializeField] RectTransform panel;
     [SerializeField] RectTransform levelFinishedPanel;
     [SerializeField] Button quitButton;
