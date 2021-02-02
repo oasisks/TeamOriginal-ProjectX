@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class CanvasManager : MonoBehaviour
 {
     [SerializeField] RectTransform panel;
+    [SerializeField] RectTransform levelFinishedPanel;
     [SerializeField] Button quitButton;
     [SerializeField] Button continueButton;
 
@@ -13,6 +14,10 @@ public class CanvasManager : MonoBehaviour
 
     private void Awake()
     {
+        // ensure that it is disabled
+        panel.gameObject.SetActive(false);
+        levelFinishedPanel.gameObject.SetActive(false);
+
         // initalize button
         // TODO: Create a button (sometime later ig)
         // quitButton.onClick.AddListener(Quit);
@@ -64,6 +69,11 @@ public class CanvasManager : MonoBehaviour
     private void Continue()
     {
         TurnOffPauseMenu();
+    }
+
+    public void enableFinishedPanel()
+    {
+        levelFinishedPanel.gameObject.SetActive(true);
     }
 
 }

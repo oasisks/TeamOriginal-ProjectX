@@ -13,12 +13,14 @@ public class GameManager : MonoBehaviour
     private Transform spawner;
     private GameObject player;
     private GameObject main_cam;
+    private CanvasManager canvas;
     private float offset;
 
     private void Awake()
     {
         spawner = transform.GetChild(0).GetComponent<Transform>();
         player = Instantiate(playerPrefab, spawner.transform.position, Quaternion.identity);
+        canvas = GameObject.FindGameObjectWithTag("canvas").GetComponent<CanvasManager>();
     }
 
     private void Start()
@@ -34,9 +36,8 @@ public class GameManager : MonoBehaviour
         if (flag.hasPassedLevel)
         {
             // we show a UI congratulating/switch levels/etc.
-            
             // UI
-
+            canvas.enableFinishedPanel();
             // switches the level
             //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
