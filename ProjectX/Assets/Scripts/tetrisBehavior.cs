@@ -29,7 +29,7 @@ public class tetrisBehavior : MonoBehaviour
     void Start()
     {
         //this.GetComponent<Renderer>().material.color.a = 0.5f;
-        m_Grid = transform.GetComponent<Grid>();
+        m_Grid = GetComponent<Grid>();
         World = FindObjectOfType<worldHandler>(); //TODO: Find by tag?
         gm = FindObjectOfType<GameManager>(); //TODO: Find by tag?
         rot_center = transform.GetChild(0).GetComponent<Transform>();

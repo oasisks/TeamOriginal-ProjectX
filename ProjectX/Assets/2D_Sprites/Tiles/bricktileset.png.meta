@@ -1,0 +1,585 @@
+fileFormatVersion: 2
+guid: c7d0f0188bafa184f9af8aa42cbadb4f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1655011689080800821
+    second: bricktileset_0
+  - first:
+      213: 3541339191421079876
+    second: bricktileset_1
+  - first:
+      213: 6928639539445570730
+    second: bricktileset_2
+  - first:
+      213: 7181468365843586206
+    second: bricktileset_3
+  - first:
+      213: -951856097625128610
+    second: bricktileset_4
+  - first:
+      213: -4953076107486562965
+    second: bricktileset_5
+  - first:
+      213: -368009441929726384
+    second: bricktileset_6
+  - first:
+      213: 1332524091158489552
+    second: bricktileset_7
+  - first:
+      213: 1577450071567428988
+    second: bricktileset_8
+  - first:
+      213: -330639450322660983
+    second: bricktileset_9
+  - first:
+      213: 8512876663628327695
+    second: bricktileset_10
+  - first:
+      213: -5684975691065272671
+    second: bricktileset_11
+  - first:
+      213: -8505399159403932038
+    second: bricktileset_12
+  - first:
+      213: 737811631347014885
+    second: bricktileset_13
+  - first:
+      213: -4067060994967902286
+    second: bricktileset_14
+  - first:
+      213: 45549665360865446
+    second: bricktileset_15
+  - first:
+      213: -1610175370143288683
+    second: bricktileset_16
+  - first:
+      213: -7610188856602472295
+    second: bricktileset_17
+  - first:
+      213: -1704788792692360697
+    second: bricktileset_18
+  - first:
+      213: 8848909246070856695
+    second: bricktileset_19
+  - first:
+      213: 8085283597315573010
+    second: bricktileset_20
+  - first:
+      213: 8151723161386509628
+    second: bricktileset_21
+  - first:
+      213: -7571749997208333632
+    second: bricktileset_22
+  - first:
+      213: -1462222287568608612
+    second: bricktileset_23
+  - first:
+      213: 4541499041257809385
+    second: bricktileset_24
+  - first:
+      213: 886020613875766330
+    second: bricktileset_25
+  - first:
+      213: 6150615133247580114
+    second: bricktileset_26
+  - first:
+      213: 3710895134982881526
+    second: bricktileset_27
+  - first:
+      213: 1146069966630124429
+    second: bricktileset_28
+  - first:
+      213: 5659297791511917523
+    second: bricktileset_29
+  - first:
+      213: 8188229183457267615
+    second: bricktileset_30
+  - first:
+      213: -303670865171377689
+    second: bricktileset_31
+  - first:
+      213: 595586207935723935
+    second: bricktileset_32
+  - first:
+      213: -2101338048661386375
+    second: bricktileset_33
+  - first:
+      213: -8275263135645456010
+    second: bricktileset_34
+  - first:
+      213: 4836332647977159895
+    second: bricktileset_35
+  - first:
+      213: 8677355860621278386
+    second: bricktileset_36
+  - first:
+      213: 1013922468996633449
+    second: bricktileset_37
+  - first:
+      213: 8621403716309563344
+    second: bricktileset_38
+  - first:
+      213: -6144656612583823032
+    second: bricktileset_39
+  - first:
+      213: 8890444439310315160
+    second: bricktileset_40
+  - first:
+      213: 8759260233915699191
+    second: bricktileset_41
+  - first:
+      213: 4296668807812462150
+    second: bricktileset_42
+  - first:
+      213: -1147417703129283696
+    second: bricktileset_43
+  - first:
+      213: 2556447645228280619
+    second: bricktileset_44
+  - first:
+      213: 5514677403066347633
+    second: bricktileset_45
+  - first:
+      213: 7913620951302694033
+    second: bricktileset_46
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: bricktileset_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 328
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc9383d23a73809e0800000000000000
+      internalID: -1655011689080800821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bricktileset_1
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 328
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44192d55b3d552130800000000000000
+      internalID: 3541339191421079876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bricktileset_2
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 328
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aac116d93f8772060800000000000000
+      internalID: 6928639539445570730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bricktileset_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 295
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d9e624d9931e7210800000000000000
+      internalID: 1332524091158489552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bricktileset_8
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 295
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7de0be7b7a34e510800000000000000
+      internalID: 1577450071567428988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bricktileset_9
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 295
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98199c6fb25596bf0800000000000000
+      internalID: -330639450322660983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bricktileset_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 262
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b76713c295ee87c0800000000000000
+      internalID: -4067060994967902286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bricktileset_15
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 262
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a8e877ed23d1a000800000000000000
+      internalID: 45549665360865446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bricktileset_16
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 262
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 592b68c280287a9e0800000000000000
+      internalID: -1610175370143288683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bricktileset_21
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 262
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3564cd860db02170800000000000000
+      internalID: 8151723161386509628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bricktileset_22
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 262
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c215509e7dbbe690800000000000000
+      internalID: -7571749997208333632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bricktileset_24
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 229
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e5e2fde055a60f30800000000000000
+      internalID: 4541499041257809385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bricktileset_30
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 229
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9f057b2f0f62a170800000000000000
+      internalID: 8188229183457267615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bricktileset_31
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 229
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e113d005f429cbf0800000000000000
+      internalID: -303670865171377689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bricktileset_32
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 196
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9971252082f34800800000000000000
+      internalID: 595586207935723935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bricktileset_33
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 196
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97b86889d2c86d2e0800000000000000
+      internalID: -2101338048661386375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

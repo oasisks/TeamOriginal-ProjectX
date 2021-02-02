@@ -167,6 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 30
+  movAccel: 1
   smoothTime: 0.05
   initialJumpForce: 60
   holdJumpForce: 90
