@@ -188,7 +188,7 @@ public class Player : MonoBehaviour
                 // for now we are assuming that Goomba is the only enemy
                 Goomba goomba = collision.collider.GetComponent<Goomba>();
 
-                if (!goomba.hasDied)
+                if (goomba != null && !goomba.hasDied)
                 {
                     UpdateHealth();
                     Debug.Log("I hit harmful object");

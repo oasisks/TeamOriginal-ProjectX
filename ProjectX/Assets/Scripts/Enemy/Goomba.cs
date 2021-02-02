@@ -10,6 +10,7 @@ public class Goomba : Enemy
     [SerializeField] float hitDistance = 0.5f;
     [SerializeField] tetrisBehavior tetris;
     [SerializeField] float dyingAnimTime = 0.25f;
+    [SerializeField] Transform killableObject;
 
     private float previousTime;
 
@@ -82,7 +83,7 @@ public class Goomba : Enemy
     private void KillGoomba()
     {
         // the goomba gets killed when a player hits it from above
-        Vector3 topCenter = new Vector3(transform.position.x, transform.position.y + spriteRenderer.size.y / 2 + 0.02f, 0);
+        Vector3 topCenter = new Vector3(killableObject.position.x, killableObject.position.y + spriteRenderer.size.y / 2 + 0.02f, 0);
         RaycastHit2D upwardHit = Physics2D.Raycast(topCenter, Vector3.up * hitDistance, hitDistance);
         Debug.DrawLine(topCenter, topCenter + Vector3.up * hitDistance);
 
