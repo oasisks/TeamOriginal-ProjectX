@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
+    [SerializeField] Vector3 offset;
     private GameObject player;
 
     private float previousHeight;
@@ -11,7 +12,7 @@ public class CameraFollow : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        previousHeight = transform.position.y;
+        previousHeight = offset.y + transform.position.y;
     }
 
     private void Update()
@@ -26,8 +27,9 @@ public class CameraFollow : MonoBehaviour
         // if the player has surpassed the camera y position
         if (previousHeight < player.transform.position.y)
         {
+            float heightDifference = player.transform.position.y - previousHeight;
             previousHeight = player.transform.position.y;
-            transform.position = new Vector3(transform.position.x, previousHeight, transform.position.z);
+            transform.position = new Vector3(transform.position.x, transform.position.y + heightDifference, transform.position.z);
         }
     }
 
