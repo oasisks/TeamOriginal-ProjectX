@@ -8,12 +8,12 @@ public class Spring : MonoBehaviour
     [SerializeField] float upwardForce;
     private Animator anim;
 
-    private AudioSource audio;
+    private AudioSource audiosrc;
 
     private void Start()
     {
         anim = GetComponent<Animator>();
-        audio = GetComponent<AudioSource>();
+        audiosrc = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -32,7 +32,7 @@ public class Spring : MonoBehaviour
             Debug.Log(forceVector);
             playerRB.AddForce(forceVector * upwardForce, ForceMode2D.Impulse);
 
-            audio.Play();
+            audiosrc.Play();
         }
     }
 

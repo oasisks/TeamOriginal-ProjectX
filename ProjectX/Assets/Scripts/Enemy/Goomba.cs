@@ -26,7 +26,7 @@ public class Goomba : Enemy
 
     public bool hasDied;
 
-    private AudioSource audio;
+    private AudioSource audiosrc;
 
     private void Awake()
     {
@@ -35,7 +35,7 @@ public class Goomba : Enemy
         spriteRenderer = GetComponent<SpriteRenderer>();
         direction.x = 1;
 
-        audio = GetComponent<AudioSource>();
+        audiosrc = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -97,7 +97,7 @@ public class Goomba : Enemy
         {
             if (upwardHit.collider.tag == "Player")
             {
-                if (!hasDied) audio.Play();
+                if (!hasDied) audiosrc.Play();
 
                 // play the animation
                 animator.SetBool("hasDied", true);
