@@ -159,7 +159,7 @@ MonoBehaviour:
   horizontalDistance: 1
   speed: 2
   hitDistance: 0.5
-  tetris: {fileID: 6402100311606616363, guid: 73520e2a2b73ff74ca6b6bebe4819763, type: 3}
+  tetris: {fileID: 9166487022320124572, guid: 89dd5542a0fc54945827afffbbdae73a, type: 3}
   dyingAnimTime: 0.25
   killableObject: {fileID: 7906904745951553433}
   hasDied: 0

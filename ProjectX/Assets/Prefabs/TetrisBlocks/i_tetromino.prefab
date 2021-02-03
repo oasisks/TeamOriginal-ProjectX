@@ -526,6 +526,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9135885567865857709, guid: e4172cc3b22d91b4cb8c911e79b15d50, type: 3}
   m_PrefabInstance: {fileID: 1117083612085599967}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &9166487022320124572 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -1101892340607665085, guid: e4172cc3b22d91b4cb8c911e79b15d50, type: 3}
+  m_PrefabInstance: {fileID: 1117083612085599967}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b421088fde767c34b9b3bd14fddadf83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5931974054890050309
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -541,6 +552,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: entityWithinTetrisBlock
       objectReference: {fileID: 0}
+    - target: {fileID: 4592386495909069676, guid: a0f47758bff168e429cd645c640346a5, type: 3}
+      propertyPath: tetris
+      value: 
+      objectReference: {fileID: 9166487022320124572}
     - target: {fileID: 4592386495909069678, guid: a0f47758bff168e429cd645c640346a5, type: 3}
       propertyPath: m_RootOrder
       value: 3
