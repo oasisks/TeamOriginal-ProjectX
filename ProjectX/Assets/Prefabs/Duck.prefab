@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85ec37e858810c949a2e42c5e60e2ab8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 10
+  playerSpeed: 8
   movAccel: 1
   initialJumpForce: 10
   holdJumpForce: 1
