@@ -19,12 +19,9 @@ public class Goomba : Enemy
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
 
-    private Vector3 direction = Vector3.zero;
-    private Vector3 scale = new Vector3(1, 1, 1);
+
 
     private bool canMove;
-
-    public bool hasDied;
 
     private AudioSource audiosrc;
 
@@ -67,9 +64,8 @@ public class Goomba : Enemy
 
         if (verticalHit.collider == null)
         {
-            scale.x = -scale.x;
+            changeDirection();
             transform.localScale = scale;
-            direction *= -1;
         }
 
         //if (horizontalHit.collider != null)

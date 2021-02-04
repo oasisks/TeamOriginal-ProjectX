@@ -221,7 +221,7 @@ public class Player : MonoBehaviour
                     Debug.Log("I hit harmful object");
                 }
             }
-            else if (collision.collider.tag == "entityWithinTetrisBlock") // TODO: check if this is a spike
+            else if (collision.gameObject.layer == LayerMask.NameToLayer("spikes")) // TODO: check if this is a spike
             {
                 SpikeBehavior spike = collision.collider.GetComponent<SpikeBehavior>();
                 if (spike.dangerous)
