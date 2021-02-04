@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
     [SerializeField] ContactFilter2D groundFilter;
 
     [Header("Misc")]
-    [SerializeField] private float health; // we may change this to hearts (i.e. a player has 3 hearts and if all three hearts are gone then you die)
+    [SerializeField] public float health; // we may change this to hearts (i.e. a player has 3 hearts and if all three hearts are gone then you die)
     [SerializeField] private float invincibleTime;
 
     [Header("Tiles")]
@@ -229,6 +229,11 @@ public class Player : MonoBehaviour
                     UpdateHealth();
                     Debug.Log("I hit a spike");
                 }
+            }
+            else if (collision.gameObject.layer == LayerMask.NameToLayer("powerups"))
+            {
+                Powerup powerup = collision.gameObject.GetComponent<Powerup>();
+                powerup.affectPlayer(gameObject);
             }
         }
     }
