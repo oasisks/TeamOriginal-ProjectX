@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class FlyingGoomba : Enemy
 {
-    [SerializeField] bool flyHorizontal;
     [SerializeField] float speed; 
     [SerializeField] Transform raycastObject;
     [SerializeField] float sightDistance;
@@ -21,12 +20,7 @@ public class FlyingGoomba : Enemy
 
     private void Fly()
     {
-        // the goomba needs to fly horizontally 
-        if (flyHorizontal)
-            Horizontal();
-        // the goomba needs to fly vertically (don't know if this is necessary)
-        if (!flyHorizontal)
-            Vertical();
+        Horizontal();
     }
 
     private void Horizontal()
@@ -48,10 +42,5 @@ public class FlyingGoomba : Enemy
         //if (horizontalHit.collider != null)
         //    Debug.Log(horizontalHit.collider.name);
         transform.Translate(direction * speed * Time.deltaTime);
-    }
-
-    private void Vertical()
-    {
-
     }
 }

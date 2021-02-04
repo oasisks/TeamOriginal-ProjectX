@@ -213,7 +213,7 @@ public class Player : MonoBehaviour
             else if (collision.gameObject.layer == LayerMask.NameToLayer("enemy"))
             {
                 // for now we are assuming that Goomba is the only enemy
-                Goomba goomba = collision.collider.GetComponent<Goomba>();
+                Enemy goomba = collision.collider.GetComponent<Enemy>();
 
                 if (goomba != null && !goomba.hasDied)
                 {
