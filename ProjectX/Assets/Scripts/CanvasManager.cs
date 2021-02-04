@@ -12,6 +12,7 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] Button resumeButton;
 
     public bool pauseMenuOn = false;
+    public bool levelFinishedPanelOn = false;
 
     private void Awake()
     {
@@ -75,6 +76,7 @@ public class CanvasManager : MonoBehaviour
     public void enableFinishedPanel()
     {
         levelFinishedPanel.gameObject.SetActive(true);
+        levelFinishedPanelOn = true;
     }
 
 }

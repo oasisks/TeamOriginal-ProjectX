@@ -75,8 +75,8 @@ public class Player : MonoBehaviour
         Death();
         ResetInvincibleAnim();        
 
-        if(!canvas.pauseMenuOn)
-            Move(); // move when pause menu is off
+        if(!canvas.pauseMenuOn && !canvas.levelFinishedPanelOn)
+            Move(); // move when pause menu is off and when the level finished panel is off
     }
 
     private void Move()

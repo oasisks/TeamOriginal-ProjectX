@@ -11,7 +11,8 @@ public class GameManager : MonoBehaviour
 
     public float score; // this will store the players score
 
-    private Flag flag;
+    [HideInInspector]
+    public Flag flag;
     private Transform spawner;
     private GameObject player;
     private GameObject main_cam;
@@ -40,6 +41,8 @@ public class GameManager : MonoBehaviour
             // we show a UI congratulating/switch levels/etc.
             // UI
             canvas.enableFinishedPanel();
+            Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
+            rb.bodyType = RigidbodyType2D.Static;
             // switches the level
             //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
@@ -50,8 +53,7 @@ public class GameManager : MonoBehaviour
             // restart the level
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
-        Debug.Log(score);
-
+        
     }
 
     private bool playerIsAlive()

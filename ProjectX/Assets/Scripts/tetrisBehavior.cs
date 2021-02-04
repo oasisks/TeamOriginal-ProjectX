@@ -125,7 +125,11 @@ public class tetrisBehavior : MonoBehaviour
         print("Done\n");
         canActivate = true;
         gm.score += scoreIncrement;
-        gm.spawnNext();
+
+        // we should only spawn next when the player has not finished the level yet
+        if (!gm.flag.hasPassedLevel)
+            gm.spawnNext();
+
         Destroy(gameObject);
     }
 
@@ -178,7 +182,7 @@ public class tetrisBehavior : MonoBehaviour
                 //transform.Rotate(0, 0, -90);
                 transform.RotateAround(rot_center.position, Vector3.forward, -90);
             }
-        } else if (getKey(KeyCode.DownArrow) || (Time.time - lastFall) >= secondsUntilFall) {
+        } else if ((getKey(KeyCode.DownArrow) || (Time.time - lastFall) >= secondsUntilFall) && !gm.flag.hasPassedLevel) {
             lastFall = Time.time;
             //fallGroup();
             transform.position += new Vector3(0, -1, 0);
