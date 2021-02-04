@@ -6,13 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] Button playButton;
-
-    private void Start()
-    {
-        // add a listener
-        playButton.onClick.AddListener(playGame);
-    }
     public void playGame()
     {
         // TODO: Put the Level selection scene into build.
