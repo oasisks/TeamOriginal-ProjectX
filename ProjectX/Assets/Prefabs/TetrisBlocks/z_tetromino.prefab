@@ -21,7 +21,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 30130f0d86271f643a8ed681a42aa749, type: 2}
     - target: {fileID: 5659877145511661449, guid: e4172cc3b22d91b4cb8c911e79b15d50, type: 3}
       propertyPath: m_Name
-      value: z_block
+      value: z_tetromino
       objectReference: {fileID: 0}
     - target: {fileID: 7940744525033570266, guid: e4172cc3b22d91b4cb8c911e79b15d50, type: 3}
       propertyPath: m_LocalPosition.y

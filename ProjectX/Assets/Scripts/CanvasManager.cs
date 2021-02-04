@@ -9,7 +9,7 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] RectTransform panel;
     [SerializeField] RectTransform levelFinishedPanel;
     [SerializeField] Button quitButton;
-    [SerializeField] Button continueButton;
+    [SerializeField] Button resumeButton;
 
     public bool pauseMenuOn = false;
 
@@ -21,8 +21,8 @@ public class CanvasManager : MonoBehaviour
 
         // initalize button
         // TODO: Create a button (sometime later ig)
-        // quitButton.onClick.AddListener(Quit);
-        // continueButton.onClick.AddListener(Continue);
+        quitButton.onClick.AddListener(Quit);
+        resumeButton.onClick.AddListener(Resume);
     }
 
     private void Update()
@@ -67,7 +67,7 @@ public class CanvasManager : MonoBehaviour
         Application.Quit();
     }
 
-    private void Continue()
+    private void Resume()
     {
         TurnOffPauseMenu();
     }

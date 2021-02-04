@@ -15,6 +15,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 517915655740844666, guid: cd533ac4a44874c4aa55dd90ea6e4ea4, type: 3}
+      propertyPath: scoreIncrement
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 621495907149772802, guid: cd533ac4a44874c4aa55dd90ea6e4ea4, type: 3}
       propertyPath: m_Tiles.Array.size
       value: 4

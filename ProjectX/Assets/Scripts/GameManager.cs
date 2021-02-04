@@ -50,7 +50,8 @@ public class GameManager : MonoBehaviour
             // restart the level
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
-        
+        Debug.Log(score);
+
     }
 
     private bool playerIsAlive()

@@ -10,6 +10,11 @@ public class tetrisBehavior : MonoBehaviour
     [SerializeField] private Tilemap SolidTiles;
     [SerializeField] private Tilemap NotSolidTiles;
     [SerializeField] private float secondsUntilFall;
+
+    [Header("Score Related")]
+    [SerializeField] int scoreIncrement;
+    
+    [Header("Misc")]
     public bool rotatable;
     public bool canActivate = false;
 
@@ -119,6 +124,7 @@ public class tetrisBehavior : MonoBehaviour
 
         print("Done\n");
         canActivate = true;
+        gm.score += scoreIncrement;
         gm.spawnNext();
         Destroy(gameObject);
     }

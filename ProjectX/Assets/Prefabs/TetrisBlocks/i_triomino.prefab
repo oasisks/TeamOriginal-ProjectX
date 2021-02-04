@@ -121,7 +121,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5659877145511661449, guid: e4172cc3b22d91b4cb8c911e79b15d50, type: 3}
       propertyPath: m_Name
-      value: t_block
+      value: i_triomino
       objectReference: {fileID: 0}
     - target: {fileID: 8144831438089056557, guid: e4172cc3b22d91b4cb8c911e79b15d50, type: 3}
       propertyPath: m_LocalPosition.x
