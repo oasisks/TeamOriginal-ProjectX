@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private GameObject[] tetrisBlocks;
 
+    public float score; // this will store the players score
+
     private Flag flag;
     private Transform spawner;
     private GameObject player;
