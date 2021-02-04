@@ -10,6 +10,7 @@ TagManager:
   - MusicManager
   - canvas
   - enemy
+  - cloud
   layers:
   - Default
   - TransparentFX
