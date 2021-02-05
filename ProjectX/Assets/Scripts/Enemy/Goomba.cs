@@ -96,8 +96,10 @@ public class Goomba : Enemy
         {
             if (upwardHit.collider.tag == "Player")
             {
-                if (!hasDied) audiosrc.Play();
-                gm.increaseScore(pointValue);
+                if (!hasDied){
+                    audiosrc.Play();
+                    gm.increaseScore(pointValue);
+                }
 
                 // play the animation
                 animator.SetBool("hasDied", true);

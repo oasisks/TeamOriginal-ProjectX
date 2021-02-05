@@ -165,7 +165,7 @@ MonoBehaviour:
   tetris: {fileID: 9166487022320124572, guid: 89dd5542a0fc54945827afffbbdae73a, type: 3}
   dyingAnimTime: 0.25
   killableObject: {fileID: 7906904745951553433}
-  pointValue: 5
+  pointValue: 100
 --- !u!95 &4592386495909069677
 Animator:
   serializedVersion: 3
