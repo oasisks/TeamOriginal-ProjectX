@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
 
     public int score; // this will store the players score
     public TMP_Text scoreText;
+    public TMP_Text gameoverText;
+    public TMP_Text gameoverMsgText;
 
     [HideInInspector]
     public Flag flag;
@@ -27,12 +29,17 @@ public class GameManager : MonoBehaviour
     private Vector3 holdpos;
     private Vector3 nextpos;
 
+    public Image[] healthHearts;
+    private int health;
+
+
     private void Awake()
     {
         spawner = transform.GetChild(0).GetComponent<Transform>();
         player = Instantiate(playerPrefab, spawner.transform.position, Quaternion.identity);
         canvas = GameObject.FindGameObjectWithTag("canvas").GetComponent<CanvasManager>();
         score = 0;
+        health = healthHearts.Length;
     }
 
     private void Start()
@@ -65,7 +72,7 @@ public class GameManager : MonoBehaviour
             // TODO: A UI that shows that the player has died.
             // TODO: A Quit and restart button
             // restart the level
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            endGame("You crushed your duck :(");
         }
 
     }
@@ -123,5 +130,22 @@ public class GameManager : MonoBehaviour
     public void increaseScore(int amount) {
         score += amount;
         scoreText.text = score.ToString("D4");
+    }
+
+    public void loseLife() {
+        healthHearts[health-1].enabled = false;
+        if(health > 1){
+            health--;
+        } else {
+            endGame("You ran out of lives :(");
+        }
+    }
+
+    public void endGame(string msg) {
+        print("END GAME");
+        gameoverText.gameObject.SetActive(true);
+        gameoverMsgText.gameObject.SetActive(true);
+        gameoverMsgText.text = msg;
+        Time.timeScale = 0;
     }
 }

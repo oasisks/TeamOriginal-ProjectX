@@ -55,7 +55,7 @@ public class tetrisBehavior : MonoBehaviour
         }
 
         if (!isValidGridPos()) {
-            print("KILLED ON START"); //TODO: make this game over
+            gm.endGame("You built too high :(");
         }
     }
 

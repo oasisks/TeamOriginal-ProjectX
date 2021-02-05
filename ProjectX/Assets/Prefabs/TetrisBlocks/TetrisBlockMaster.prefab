@@ -198,7 +198,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SolidTiles: {fileID: 9158831213028683323}
   NotSolidTiles: {fileID: 773656648371128722}
-  secondsUntilFall: 1
+  secondsUntilFall: 0.8
   scoreIncrement: 50
   rotatable: 1
   active: 0

@@ -45,6 +45,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: UI-front
+    uniqueID: 2237880997
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

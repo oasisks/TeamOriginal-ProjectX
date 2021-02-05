@@ -188,7 +188,7 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
-  health: 5
+  health: 3
   invincibleTime: 2
   iceTile: {fileID: 11400000, guid: 45758033d09689a4abcd9d2c7a6967de, type: 2}
   slimeTile: {fileID: 11400000, guid: a89a4a4f4709cbe4d8f1ac5706371e59, type: 2}

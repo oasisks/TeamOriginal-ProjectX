@@ -29,11 +29,11 @@ public class Player : MonoBehaviour
     [SerializeField] private float invincibleTime;
 
     [Header("Tiles")]
-    [SerializeField] private TileBase iceTile; 
+    [SerializeField] private TileBase iceTile;
     [SerializeField] private TileBase slimeTile;
-    [SerializeField] private TileBase spiderwebTile; 
-    [SerializeField] private TileBase conveyorLeft; 
-    [SerializeField] private TileBase conveyorRight; 
+    [SerializeField] private TileBase spiderwebTile;
+    [SerializeField] private TileBase conveyorLeft;
+    [SerializeField] private TileBase conveyorRight;
 
     private Rigidbody2D rb;
     private bool isGrounded = true;
@@ -58,6 +58,8 @@ public class Player : MonoBehaviour
     // canvas
     private CanvasManager canvas;
 
+    private GameManager gm;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -65,6 +67,7 @@ public class Player : MonoBehaviour
         animator = GetComponent<Animator>();
         World = FindObjectOfType<worldHandler>(); //TODO: Find by tag?
         canvas = GameObject.FindGameObjectWithTag("canvas").GetComponent<CanvasManager>();
+        gm = FindObjectOfType<GameManager>();
     }
 
     private void Update()
@@ -73,7 +76,7 @@ public class Player : MonoBehaviour
         belowTile = CheckGround();
         withinTile = CheckTileWithin(); //get squished
         Death();
-        ResetInvincibleAnim();        
+        ResetInvincibleAnim();
 
         if(!canvas.pauseMenuOn && !canvas.levelFinishedPanelOn)
             Move(); // move when pause menu is off and when the level finished panel is off
@@ -96,7 +99,7 @@ public class Player : MonoBehaviour
         }
 
         Vector2 targetVelocity = /*groundDir * */keyVelocity * playerSpeed; // * (isGrounded ? movSpeed : airMovSpeed);
-        
+
 
         if (isGrounded) walkAudioSource.volume = velocity.x*walkVol;
         //The change in velocity we need to perform to achieve our target velocity
@@ -117,7 +120,7 @@ public class Player : MonoBehaviour
             }  else if(belowTile == conveyorRight) {
                 rb.AddForce(new Vector2(30, 0) * rb.mass, ForceMode2D.Force);
             }
-        } 
+        }
 
         if(withinTile == spiderwebTile) {
             rb.drag = 100;
@@ -131,7 +134,7 @@ public class Player : MonoBehaviour
         //Apply the velocity change to the character
         rb.AddForce(velocityDelta * rb.mass, ForceMode2D.Impulse);
         animator.SetFloat("Speed", Mathf.Abs(velocityDelta.magnitude));
-        
+
         //obsolete movement commands (dont use these)
         //keyVelocity = keyVelocity.normalized * playerSpeed;
         //rb.velocity = Vector3.SmoothDamp(rb.velocity, keyVelocity*playerSpeed, ref referencedVelocity, 0.15f);//smoothTime);
@@ -244,6 +247,7 @@ public class Player : MonoBehaviour
         animator.SetBool("HitHarmfulObjects", true);
         invincible = true;
         previousTime = Time.time;
+        gm.loseLife();
     }
 
     private TileBase CheckGround()
