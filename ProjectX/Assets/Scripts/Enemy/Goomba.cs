@@ -18,16 +18,20 @@ public class Goomba : Enemy
     private Animator animator;
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
+    private GameManager gm;
 
     private bool canMove;
 
     private AudioSource audiosrc;
+
+    public int pointValue;
 
     private void Awake()
     {
         raycastTransform = transform.GetChild(0).GetComponent<Transform>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        gm = FindObjectOfType<GameManager>();
         direction.x = 1;
 
         audiosrc = GetComponent<AudioSource>();
@@ -35,7 +39,7 @@ public class Goomba : Enemy
 
     private void Update()
     {
-        /*if (tetris.canActivate) 
+        /*if (tetris.canActivate)
         {
             Activate();
             canMove = true;
@@ -93,6 +97,7 @@ public class Goomba : Enemy
             if (upwardHit.collider.tag == "Player")
             {
                 if (!hasDied) audiosrc.Play();
+                gm.increaseScore(pointValue);
 
                 // play the animation
                 animator.SetBool("hasDied", true);

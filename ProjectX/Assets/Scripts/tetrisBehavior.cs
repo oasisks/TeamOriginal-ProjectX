@@ -13,7 +13,7 @@ public class tetrisBehavior : MonoBehaviour
 
     [Header("Score Related")]
     [SerializeField] int scoreIncrement;
-    
+
     [Header("Misc")]
     [SerializeField] public bool rotatable;
     //public bool canActivate = false;
@@ -41,7 +41,7 @@ public class tetrisBehavior : MonoBehaviour
         //this.GetComponent<Renderer>().material.color.a = 0.5f;
         m_Grid = GetComponent<Grid>();
         World = FindObjectOfType<worldHandler>(); //TODO: Find by tag?
-        cm = FindObjectOfType<CanvasManager>(); 
+        cm = FindObjectOfType<CanvasManager>();
         gm = FindObjectOfType<GameManager>(); //TODO: Find by tag?
         rot_center = transform.GetChild(0).GetComponent<Transform>();
         lastFall = Time.time;
@@ -130,7 +130,7 @@ public class tetrisBehavior : MonoBehaviour
 
         print("Done\n");
         //canActivate = true;
-        gm.score += scoreIncrement;
+        gm.increaseScore(scoreIncrement);
 
         // we should only spawn next when the player has not finished the level yet
         if (!gm.flag.hasPassedLevel)

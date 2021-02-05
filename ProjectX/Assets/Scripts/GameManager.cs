@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private GameObject[] tetrisBlocks;
 
-    public float score; // this will store the players score
+    public int score; // this will store the players score
+    public TMP_Text scoreText;
 
     [HideInInspector]
     public Flag flag;
@@ -30,23 +32,24 @@ public class GameManager : MonoBehaviour
         spawner = transform.GetChild(0).GetComponent<Transform>();
         player = Instantiate(playerPrefab, spawner.transform.position, Quaternion.identity);
         canvas = GameObject.FindGameObjectWithTag("canvas").GetComponent<CanvasManager>();
+        score = 0;
     }
 
     private void Start()
     {
         current = null;
         hold = null;
-        
+
         flag = GameObject.FindGameObjectWithTag("Flag").GetComponent<Flag>();
         main_cam = GameObject.FindGameObjectWithTag("MainCamera");
         offset = main_cam.GetComponent<Camera>().orthographicSize;
         getPositions();
         createNext();
-        spawnNext(); 
+        spawnNext();
     }
 
     private void Update()
-    { 
+    {
         if (flag.hasPassedLevel)
         {
             // we show a UI congratulating/switch levels/etc.
@@ -64,7 +67,7 @@ public class GameManager : MonoBehaviour
             // restart the level
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
-        
+
     }
 
     private bool playerIsAlive()
@@ -115,5 +118,10 @@ public class GameManager : MonoBehaviour
             hold = current;
             spawnNext();
         }
+    }
+
+    public void increaseScore(int amount) {
+        score += amount;
+        scoreText.text = score.ToString("D4");
     }
 }
