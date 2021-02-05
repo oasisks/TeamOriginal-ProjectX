@@ -8,11 +8,13 @@ public class CameraFollow : MonoBehaviour
     private GameObject player;
 
     private float previousHeight;
+    private Camera camera;
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         previousHeight = offset.y + transform.position.y;
+        camera = GetComponent<Camera>();
     }
 
     private void Update()
@@ -20,6 +22,7 @@ public class CameraFollow : MonoBehaviour
         if(player != null) { //TODO: do this properly
             Follow();
         }
+        KillPlayer();
     }
 
     private void Follow()
@@ -30,6 +33,15 @@ public class CameraFollow : MonoBehaviour
             float heightDifference = player.transform.position.y - previousHeight;
             previousHeight = player.transform.position.y;
             transform.position = new Vector3(transform.position.x, transform.position.y + heightDifference, transform.position.z);
+        }
+    }
+    
+    private void KillPlayer()
+    {
+        float minimumYPos = transform.position.y - camera.orthographicSize;
+        if (player != null && player.transform.position.y < minimumYPos)
+        {
+            Destroy(player);
         }
     }
 
