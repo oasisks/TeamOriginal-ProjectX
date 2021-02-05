@@ -8,13 +8,13 @@ public class CameraFollow : MonoBehaviour
     private GameObject player;
 
     private float previousHeight;
-    private Camera camera;
+    private Camera cam;
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         previousHeight = offset.y + transform.position.y;
-        camera = GetComponent<Camera>();
+        cam = GetComponent<Camera>();
     }
 
     private void Update()
@@ -38,7 +38,7 @@ public class CameraFollow : MonoBehaviour
     
     private void KillPlayer()
     {
-        float minimumYPos = transform.position.y - camera.orthographicSize;
+        float minimumYPos = transform.position.y - cam.orthographicSize;
         if (player != null && player.transform.position.y < minimumYPos)
         {
             Destroy(player);

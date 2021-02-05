@@ -55,6 +55,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spike
       objectReference: {fileID: 0}
+    - target: {fileID: 4715691267775719677, guid: e152f25ff3726c442b7604e6b0aaa651, type: 3}
+      propertyPath: m_TagString
+      value: entityWithinTetrisBlock
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e152f25ff3726c442b7604e6b0aaa651, type: 3}
 --- !u!1001 &2911402133873825977
