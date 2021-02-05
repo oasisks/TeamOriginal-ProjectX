@@ -76,6 +76,7 @@ public class Goomba : Enemy
         // add a rigidbody component
         rb = gameObject.AddComponent<Rigidbody2D>();
         // freeze the z-axis
+        canMove = true;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
