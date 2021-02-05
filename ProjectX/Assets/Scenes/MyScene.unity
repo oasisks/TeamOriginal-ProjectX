@@ -155,8 +155,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c5fe51ca2f444243bdc855203483cb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 1
+  hasDied: 0
+  direction: {x: 0, y: 0, z: 0}
+  scale: {x: 1, y: 1, z: 1}
+  horizontalDistance: 5
   speed: 2
+  hitDistance: 0.5
+  tetris: {fileID: 0}
+  dyingAnimTime: 0.25
+  killableObject: {fileID: 0}
 --- !u!50 &666794691
 Rigidbody2D:
   serializedVersion: 4
@@ -720,6 +727,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5700144c168e464cb5a1976a2b652a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  upwardForce: 0
 --- !u!1001 &3968829346412924064
 PrefabInstance:
   m_ObjectHideFlags: 0

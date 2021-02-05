@@ -15,15 +15,18 @@ public class tetrisBehavior : MonoBehaviour
     [SerializeField] int scoreIncrement;
     
     [Header("Misc")]
-    public bool rotatable;
-    public bool canActivate = false;
+    [SerializeField] public bool rotatable;
+    //public bool canActivate = false;
+
+    public bool active;
 
     private List<Vector3> tileWorldLocations;
     private Transform rot_center;
 
     private Grid m_Grid;
-    worldHandler World;
-    GameManager gm;
+    private worldHandler World;
+    private GameManager gm;
+    private CanvasManager cm;
 
     // time of the last fall, used to auto fall
     private float lastFall;
@@ -38,6 +41,7 @@ public class tetrisBehavior : MonoBehaviour
         //this.GetComponent<Renderer>().material.color.a = 0.5f;
         m_Grid = GetComponent<Grid>();
         World = FindObjectOfType<worldHandler>(); //TODO: Find by tag?
+        cm = FindObjectOfType<CanvasManager>(); 
         gm = FindObjectOfType<GameManager>(); //TODO: Find by tag?
         rot_center = transform.GetChild(0).GetComponent<Transform>();
         lastFall = Time.time;
@@ -114,16 +118,18 @@ public class tetrisBehavior : MonoBehaviour
         foreach(Transform child in this.transform) { //.GetComponentsInChildren<Transform>(checkInactive)) {
             if(child.gameObject.CompareTag("entityWithinTetrisBlock") == true) {
                 // we don't want to rotate the enemy
-                if (child.gameObject.layer == LayerMask.NameToLayer("enemy"))
-                    Instantiate(child.gameObject, child.position, Quaternion.identity);
-                else
+                if (child.gameObject.layer == LayerMask.NameToLayer("enemy")) {
+                    GameObject e = Instantiate(child.gameObject, child.position, Quaternion.identity);
+                    e.GetComponent<Goomba>().Activate();
+                } else {
                     Instantiate(child.gameObject, child.position, child.rotation);
+                }
             }
             //GameObject obj = child.gameObject;
         }
 
         print("Done\n");
-        canActivate = true;
+        //canActivate = true;
         gm.score += scoreIncrement;
 
         // we should only spawn next when the player has not finished the level yet
@@ -163,83 +169,36 @@ public class tetrisBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (UIController.isPaused) {
-        //    return; // don't do nothing
-        //}
-        if (getKey(KeyCode.LeftArrow)) {
-            tryPosChange(new Vector3Int(-1, 0, 0));
-        } else if (getKey(KeyCode.RightArrow)) {  // Move right
-            tryPosChange(new Vector3Int(1, 0, 0));
-        } else if (rotatable && getKey(KeyCode.UpArrow)) { // Rotate
-            //transform.Rotate(0, 0, 90);
-            transform.RotateAround(rot_center.position, Vector3.forward, 90);
-
-            // see if valid
-            if (isValidGridPos()) {
-                // it's valid. Update grid
-            } else {
-                // it's not valid. revert
-                //transform.Rotate(0, 0, -90);
-                transform.RotateAround(rot_center.position, Vector3.forward, -90);
-            }
-        } else if ((getKey(KeyCode.DownArrow) || (Time.time - lastFall) >= secondsUntilFall) && !gm.flag.hasPassedLevel) {
-            lastFall = Time.time;
-            //fallGroup();
-            transform.position += new Vector3(0, -1, 0);
-            if (!isValidGridPos()){
-                transform.position += new Vector3(0, 1, 0);
-                insertInWorld();
-            }
-        } else if (Input.GetKeyDown(KeyCode.Space)) {
-            insertInWorld();
-
-            /*while (enabled) { // fall until the bottom
-                fallGroup();
-            }*/
-        }
-    }
-
-    /*
-    // update the grid
-    void updateGrid() {
-        // Remove old children from grid
-        for (int y = 0; y < Grid.h; ++y) {
-            for (int x = 0; x < Grid.w; ++x) {
-                if (Grid.grid[x,y] != null &&
-                    Grid.grid[x,y].parent == transform) {
-                    Grid.grid[x,y] = null;
+        if (!cm.pauseMenuOn && active) {
+            if (getKey(KeyCode.LeftArrow)) {
+                tryPosChange(new Vector3Int(-1, 0, 0));
+            } else if (getKey(KeyCode.RightArrow)) {  // Move right
+                tryPosChange(new Vector3Int(1, 0, 0));
+            } else if (rotatable && getKey(KeyCode.UpArrow)) { // Rotate
+                //transform.Rotate(0, 0, 90);
+                transform.RotateAround(rot_center.position, Vector3.forward, 90);
+                if (!isValidGridPos()) {
+                    // it's not valid. revert
+                    //transform.Rotate(0, 0, -90);
+                    transform.RotateAround(rot_center.position, Vector3.forward, -90);
                 }
+            } else if ((getKey(KeyCode.DownArrow) || (Time.time - lastFall) >= secondsUntilFall) && !gm.flag.hasPassedLevel) {
+                lastFall = Time.time;
+                transform.position += new Vector3(0, -1, 0);
+                if (!isValidGridPos()){
+                    transform.position += new Vector3(0, 1, 0);
+                    insertInWorld();
+                }
+            } else if (Input.GetKeyDown(KeyCode.K)) { //Freeze
+                insertInWorld();
+
+                /*while (enabled) { // fall until the bottom
+                    fallGroup();
+                }*/
+            } else if (Input.GetKeyDown(KeyCode.J)) { //Hold
+                active = false;
+                gm.hold_transfer();
             }
         }
-
-        insertOnGrid();
     }
-
-    void fallGroup() {
-        // modify
-        transform.position += new Vector3(0, -1, 0);
-
-        if (isValidGridPos()){
-            // It's valid. Update grid... again
-            updateGrid();
-        } else {
-            // it's not valid. revert
-            transform.position += new Vector3(0, 1, 0);
-
-            // Clear filled horizontal lines
-            Grid.deleteFullRows();
-
-
-            FindObjectOfType<Spawner>().spawnNext();
-
-
-            // Disable script
-            enabled = false;
-        }
-
-        lastFall = Time.time;
-
-    }
-
-    */
 }

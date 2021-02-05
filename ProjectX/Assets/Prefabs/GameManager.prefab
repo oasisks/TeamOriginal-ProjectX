@@ -91,3 +91,5 @@ MonoBehaviour:
   - {fileID: 3693846740710296753, guid: 8f6c4e6a1f4a5a24bb2638a98025021d, type: 3}
   - {fileID: 4111407182766135728, guid: cd533ac4a44874c4aa55dd90ea6e4ea4, type: 3}
   - {fileID: 8413132686468346657, guid: a574f3803b761e04e9fbda116a594730, type: 3}
+  score: 0
+  flag: {fileID: 0}

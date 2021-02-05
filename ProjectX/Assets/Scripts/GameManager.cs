@@ -18,6 +18,12 @@ public class GameManager : MonoBehaviour
     private GameObject main_cam;
     private CanvasManager canvas;
     private float offset;
+    private tetrisBehavior current;
+    private tetrisBehavior next;
+    private tetrisBehavior hold;
+    private Vector3 spawnpos;
+    private Vector3 holdpos;
+    private Vector3 nextpos;
 
     private void Awake()
     {
@@ -28,10 +34,15 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        current = null;
+        hold = null;
+        
         flag = GameObject.FindGameObjectWithTag("Flag").GetComponent<Flag>();
         main_cam = GameObject.FindGameObjectWithTag("MainCamera");
         offset = main_cam.GetComponent<Camera>().orthographicSize;
-        spawnNext(); //TODO: move to update, spawn tetris block when the previous one gets deleted
+        getPositions();
+        createNext();
+        spawnNext(); 
     }
 
     private void Update()
@@ -65,16 +76,44 @@ public class GameManager : MonoBehaviour
         return true;
     }
 
-    public void spawnNext() {
-        Vector3 spawnpos = main_cam.transform.position;
-        spawnpos.y = Mathf.Round(spawnpos.y+offset-2);
-        spawnpos.x = Mathf.Round(spawnpos.x);
-        spawnpos.z = 0;
+    private void getPositions() {
+        Vector3 campos = main_cam.transform.position;
+        spawnpos = new Vector3(Mathf.Round(campos.x-3), Mathf.Round(campos.y+offset), 0);
+        nextpos = new Vector3(Mathf.Round(campos.x+10), Mathf.Round(campos.y+5), 0);
+        holdpos = new Vector3(Mathf.Round(campos.x+10), Mathf.Round(campos.y-2), 0);
+    }
+
+    private void createNext() {
         // Random Index
         int i = Random.Range(0, tetrisBlocks.Length);
-
         // Spawn Group at current Position
-        Instantiate(tetrisBlocks[i], spawnpos, Quaternion.identity);
+        next = Instantiate(tetrisBlocks[i], nextpos, Quaternion.identity).GetComponent<tetrisBehavior>();
+        next.active = false;
         print("Spawned block");
+    }
+
+    public void spawnNext() {
+        getPositions();
+        current = next;
+        current.transform.position = spawnpos;
+        current.active = true;
+        createNext(); //starts at nextpos
+    }
+
+    public void hold_transfer() {
+        getPositions();
+        current.active = false;
+        if(hold != null) {
+            hold.active = true;
+            hold.transform.position = current.transform.position;
+            current.transform.position = holdpos;
+            tetrisBehavior temp = hold;
+            hold = current;
+            current = temp;
+        } else {
+            current.transform.position = holdpos;
+            hold = current;
+            spawnNext();
+        }
     }
 }

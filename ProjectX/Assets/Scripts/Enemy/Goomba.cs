@@ -19,8 +19,6 @@ public class Goomba : Enemy
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
 
-
-
     private bool canMove;
 
     private AudioSource audiosrc;
@@ -37,12 +35,12 @@ public class Goomba : Enemy
 
     private void Update()
     {
-        if (tetris.canActivate)
+        /*if (tetris.canActivate) 
         {
             Activate();
             canMove = true;
-            tetris.canActivate = false;
-        }
+            tetris.canActivate = false; //removed to support more than one goomba per tetris block
+        }*/
         if (canMove)
             GoombaMovement();
 
@@ -73,7 +71,7 @@ public class Goomba : Enemy
         transform.Translate(direction * speed * Time.deltaTime);
     }
 
-    private void Activate()
+    public void Activate()
     {
         // add a rigidbody component
         rb = gameObject.AddComponent<Rigidbody2D>();
