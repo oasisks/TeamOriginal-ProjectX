@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
     public Image[] healthHearts;
     private int health;
 
+    private bool started;
+
 
     private void Awake()
     {
@@ -40,10 +42,12 @@ public class GameManager : MonoBehaviour
         canvas = GameObject.FindGameObjectWithTag("canvas").GetComponent<CanvasManager>();
         score = 0;
         health = healthHearts.Length;
+        started = true;
     }
 
     private void Start()
-    {
+    {   
+        started = false;
         current = null;
         hold = null;
 
@@ -67,7 +71,7 @@ public class GameManager : MonoBehaviour
             // switches the level
             //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
-        if (!playerIsAlive())
+        if (started && !playerIsAlive())
         {
             // TODO: A UI that shows that the player has died.
             // TODO: A Quit and restart button
@@ -78,7 +82,7 @@ public class GameManager : MonoBehaviour
     }
 
     private bool playerIsAlive()
-    {
+    {   
         if (player == null)
         {
             return false;
@@ -88,7 +92,7 @@ public class GameManager : MonoBehaviour
 
     private void getPositions() {
         Vector3 campos = main_cam.transform.position;
-        spawnpos = new Vector3(Mathf.Round(campos.x-3), Mathf.Round(campos.y+offset), 0);
+        spawnpos = new Vector3(Mathf.Round(campos.x-3), Mathf.Round(campos.y+offset-2), 0);
         nextpos = new Vector3(Mathf.Round(campos.x+10), Mathf.Round(campos.y+5), 0);
         holdpos = new Vector3(Mathf.Round(campos.x+10), Mathf.Round(campos.y-2), 0);
     }
@@ -129,7 +133,7 @@ public class GameManager : MonoBehaviour
 
     public void increaseScore(int amount) {
         score += amount;
-        scoreText.text = score.ToString("D4");
+        //scoreText.text = score.ToString("D4");
     }
 
     public void loseLife() {
@@ -142,10 +146,10 @@ public class GameManager : MonoBehaviour
     }
 
     public void endGame(string msg) {
-        print("END GAME");
-        gameoverText.gameObject.SetActive(true);
-        gameoverMsgText.gameObject.SetActive(true);
-        gameoverMsgText.text = msg;
+        print(msg);
+        //gameoverText.gameObject.SetActive(true);
+        //gameoverMsgText.gameObject.SetActive(true);
+        //gameoverMsgText.text = msg;
         Time.timeScale = 0;
     }
 }
