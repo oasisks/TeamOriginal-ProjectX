@@ -64,6 +64,11 @@ public class GameManager : MonoBehaviour
             Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
             rb.bodyType = RigidbodyType2D.Static;
             // switches the level
+            if (Input.anyKeyDown)
+            {
+                // we are going to move on to the next scene 
+                //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            }
             //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
         if (!playerKilled && !playerIsAlive())  // if player is not killed from insufficient life
