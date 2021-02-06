@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     public TMP_Text scoreText;
     public TMP_Text gameoverText;
     public TMP_Text gameoverMsgText;
+    public Button restart;
+    public Button quit;
 
     [HideInInspector]
     public Flag flag;
@@ -32,6 +34,8 @@ public class GameManager : MonoBehaviour
     public Image[] healthHearts;
     private int health;
 
+    private bool started;
+
 
     private void Awake()
     {
@@ -40,10 +44,16 @@ public class GameManager : MonoBehaviour
         canvas = GameObject.FindGameObjectWithTag("canvas").GetComponent<CanvasManager>();
         score = 0;
         health = healthHearts.Length;
+        //restart.onClick.AddListener(canvas.NewGame);
+        //quit.onClick.AddListener(canvas.Quit);
+        //restart.gameObject.SetActive(false);
+        //quit.gameObject.SetActive(false);
+        started = true;
     }
 
     private void Start()
-    {
+    {   
+        started = false;
         current = null;
         hold = null;
 
@@ -67,7 +77,7 @@ public class GameManager : MonoBehaviour
             // switches the level
             //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
-        if (!playerIsAlive())
+        if (started && !playerIsAlive())
         {
             // TODO: A UI that shows that the player has died.
             // TODO: A Quit and restart button
@@ -78,7 +88,7 @@ public class GameManager : MonoBehaviour
     }
 
     private bool playerIsAlive()
-    {
+    {   
         if (player == null)
         {
             return false;
@@ -88,7 +98,7 @@ public class GameManager : MonoBehaviour
 
     private void getPositions() {
         Vector3 campos = main_cam.transform.position;
-        spawnpos = new Vector3(Mathf.Round(campos.x-3), Mathf.Round(campos.y+offset), 0);
+        spawnpos = new Vector3(Mathf.Round(campos.x-3), Mathf.Round(campos.y+offset-2), 0);
         nextpos = new Vector3(Mathf.Round(campos.x+10), Mathf.Round(campos.y+5), 0);
         holdpos = new Vector3(Mathf.Round(campos.x+10), Mathf.Round(campos.y-2), 0);
     }
@@ -142,7 +152,9 @@ public class GameManager : MonoBehaviour
     }
 
     public void endGame(string msg) {
-        print("END GAME");
+        print(msg);
+        restart.gameObject.SetActive(true);
+        quit.gameObject.SetActive(true);
         gameoverText.gameObject.SetActive(true);
         gameoverMsgText.gameObject.SetActive(true);
         gameoverMsgText.text = msg;

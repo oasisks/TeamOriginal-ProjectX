@@ -23,11 +23,11 @@ public class worldHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (m_Grid && Input.GetMouseButtonDown(0)) //TESTING
-		{
-			Vector3 world = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            setTile_GlobalPos(world, groundTile, true);
-		}
+  //      if (m_Grid && Input.GetMouseButtonDown(0)) //TESTING
+		//{
+		//	Vector3 world = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+  //          setTile_GlobalPos(world, groundTile, true);
+		//}
     }
 
     public TileBase getTile_GlobalPos(Vector3 globalpos) {
