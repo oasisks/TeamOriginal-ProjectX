@@ -7,15 +7,13 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Necesities")]
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private GameObject[] tetrisBlocks;
 
+    [Header("UI Things")]
     public int score; // this will store the players score
-    public TMP_Text scoreText;
-    public TMP_Text gameoverText;
-    public TMP_Text gameoverMsgText;
-    public Button restart;
-    public Button quit;
+    public Image[] healthHearts;
 
     [HideInInspector]
     public Flag flag;
@@ -30,11 +28,7 @@ public class GameManager : MonoBehaviour
     private Vector3 spawnpos;
     private Vector3 holdpos;
     private Vector3 nextpos;
-
-    public Image[] healthHearts;
     private int health;
-
-    private bool started;
 
 
     private void Awake()
@@ -44,16 +38,10 @@ public class GameManager : MonoBehaviour
         canvas = GameObject.FindGameObjectWithTag("canvas").GetComponent<CanvasManager>();
         score = 0;
         health = healthHearts.Length;
-        //restart.onClick.AddListener(canvas.NewGame);
-        //quit.onClick.AddListener(canvas.Quit);
-        //restart.gameObject.SetActive(false);
-        //quit.gameObject.SetActive(false);
-        started = true;
     }
 
     private void Start()
-    {   
-        started = false;
+    {  
         current = null;
         hold = null;
 
@@ -63,6 +51,8 @@ public class GameManager : MonoBehaviour
         getPositions();
         createNext();
         spawnNext();
+        // we need to ensure that the game's time scale is always set to one when the game has started
+        Time.timeScale = 1f;
     }
 
     private void Update()
@@ -77,7 +67,7 @@ public class GameManager : MonoBehaviour
             // switches the level
             //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
-        if (started && !playerIsAlive())
+        if (!playerIsAlive())
         {
             // TODO: A UI that shows that the player has died.
             // TODO: A Quit and restart button
@@ -139,7 +129,7 @@ public class GameManager : MonoBehaviour
 
     public void increaseScore(int amount) {
         score += amount;
-        scoreText.text = score.ToString("D4");
+        canvas.UpdateScore(score);
     }
 
     public void loseLife() {
@@ -153,11 +143,7 @@ public class GameManager : MonoBehaviour
 
     public void endGame(string msg) {
         print(msg);
-        restart.gameObject.SetActive(true);
-        quit.gameObject.SetActive(true);
-        gameoverText.gameObject.SetActive(true);
-        gameoverMsgText.gameObject.SetActive(true);
-        gameoverMsgText.text = msg;
+        canvas.PlayGameoverUI(msg);
         Time.timeScale = 0;
     }
 }
