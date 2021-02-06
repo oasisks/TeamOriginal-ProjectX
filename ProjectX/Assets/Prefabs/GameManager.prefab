@@ -77,19 +77,17 @@ MonoBehaviour:
   playerPrefab: {fileID: 5546493769386304302, guid: 38f177ec5a4e0c749b914bb7f5fc5884, type: 3}
   tetrisBlocks:
   - {fileID: 4392348950620515512, guid: fb416c2932eb0f643879de7c2026079e, type: 3}
-  - {fileID: 4686912295997452630, guid: 89dd5542a0fc54945827afffbbdae73a, type: 3}
-  - {fileID: 7796364526403850679, guid: e8b7f9c5e5338be42a32a7f7f031c76f, type: 3}
   - {fileID: 8514393981726817029, guid: 5cb6533595b2c514a9ada1117ec155a2, type: 3}
   - {fileID: 444158179979594323, guid: 31f0557be525e4140aa72bfad15d686a, type: 3}
   - {fileID: 4005189677353455307, guid: 8f79f35a26508a74ea51fa3b28bba9ae, type: 3}
-  - {fileID: 7097901935096090068, guid: 7215dbb56ddd25a4ca90a8067622fe3b, type: 3}
   - {fileID: 7919132322500391985, guid: e7ad405541934054fa070dee348de291, type: 3}
-  - {fileID: 5398990934524493772, guid: 4b3318f931314574d98e012d2670c735, type: 3}
-  - {fileID: 3668135668578620953, guid: 96f5efeed86e4574a8e3ad09d4aa305c, type: 3}
-  - {fileID: 135108789604534751, guid: c6a5c3adb0df93047976709756773e1f, type: 3}
-  - {fileID: 5809109280315755488, guid: 435fe0a5d1e41224b942e59cb75a6dcb, type: 3}
-  - {fileID: 3693846740710296753, guid: 8f6c4e6a1f4a5a24bb2638a98025021d, type: 3}
   - {fileID: 4111407182766135728, guid: cd533ac4a44874c4aa55dd90ea6e4ea4, type: 3}
-  - {fileID: 8413132686468346657, guid: a574f3803b761e04e9fbda116a594730, type: 3}
+  - {fileID: 2187296411595384653, guid: 8229bb7a2716fb148bcdb07eef4d7e79, type: 3}
   score: 0
+  scoreText: {fileID: 0}
+  gameoverText: {fileID: 0}
+  gameoverMsgText: {fileID: 0}
+  restart: {fileID: 0}
+  quit: {fileID: 0}
   flag: {fileID: 0}
+  healthHearts: []
