@@ -9,6 +9,6 @@ public class MainMenu : MonoBehaviour
     public void playGame()
     {
         // TODO: Put the Level selection scene into build.
-        SceneManager.LoadScene("LvlSelect");
+        SceneManager.LoadScene("Earth");
     }
 }
