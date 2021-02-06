@@ -86,6 +86,7 @@ public class CanvasManager : MonoBehaviour
     public void NewGame()
     {
         Debug.Log("Restart Level");
+        Time.timeScale = 1f;
 
         // this restarts the current level
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
