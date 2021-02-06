@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CanvasManager : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] RectTransform levelFinishedPanel;
     [SerializeField] Button quitButton;
     [SerializeField] Button resumeButton;
+    [SerializeField] Button loadNewGameButton;
 
     public bool pauseMenuOn = false;
     public bool levelFinishedPanelOn = false;
@@ -24,6 +26,7 @@ public class CanvasManager : MonoBehaviour
         // TODO: Create a button (sometime later ig)
         quitButton.onClick.AddListener(Quit);
         resumeButton.onClick.AddListener(Resume);
+        loadNewGameButton.onClick.AddListener(NewGame);
     }
 
     private void Update()
@@ -63,7 +66,7 @@ public class CanvasManager : MonoBehaviour
         pauseMenuOn = false;
     }
 
-    private void Quit()
+    public void Quit()
     {
         Application.Quit();
     }
@@ -71,12 +74,21 @@ public class CanvasManager : MonoBehaviour
     private void Resume()
     {
         TurnOffPauseMenu();
+        Debug.Log("I resume");
     }
 
     public void enableFinishedPanel()
     {
         levelFinishedPanel.gameObject.SetActive(true);
         levelFinishedPanelOn = true;
+    }
+
+    public void NewGame()
+    {
+        Debug.Log("Restart Level");
+
+        // this restarts the current level
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
 }
