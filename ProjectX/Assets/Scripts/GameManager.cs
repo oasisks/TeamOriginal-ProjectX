@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
 
     [Header("UI Things")]
     public int score; // this will store the players score
-    public Image[] healthHearts;
+    public RawImage[] healthHearts;
 
     [HideInInspector]
     public Flag flag;
@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     private Vector3 spawnpos;
     private Vector3 holdpos;
     private Vector3 nextpos;
-    private int health;
+    public bool playerKilled = false;
 
 
     private void Awake()
@@ -37,7 +37,6 @@ public class GameManager : MonoBehaviour
         player = Instantiate(playerPrefab, spawner.transform.position, Quaternion.identity);
         canvas = GameObject.FindGameObjectWithTag("canvas").GetComponent<CanvasManager>();
         score = 0;
-        health = healthHearts.Length;
     }
 
     private void Start()
@@ -67,7 +66,7 @@ public class GameManager : MonoBehaviour
             // switches the level
             //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
-        if (!playerIsAlive())
+        if (!playerKilled && !playerIsAlive())  // if player is not killed from insufficient life
         {
             // TODO: A UI that shows that the player has died.
             // TODO: A Quit and restart button
@@ -132,13 +131,11 @@ public class GameManager : MonoBehaviour
         canvas.UpdateScore(score);
     }
 
-    public void loseLife() {
-        healthHearts[health-1].enabled = false;
-        if(health > 1){
-            health--;
-        } else {
+    public void loseLife(int health) {
+        // update the health UI
+        canvas.DisableHealth(health);
+        if (health == 0)
             endGame("You ran out of lives :(");
-        }
     }
 
     public void endGame(string msg) {

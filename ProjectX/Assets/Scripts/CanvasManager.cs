@@ -21,6 +21,9 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] Button gameoverQuitButton;
     [SerializeField] Button gameoverRestartButton;
 
+    [Header("Health UI")]
+    [SerializeField] RawImage[] healths;
+
     public bool pauseMenuOn = false;
     public bool levelFinishedPanelOn = false;
 
@@ -38,6 +41,10 @@ public class CanvasManager : MonoBehaviour
         loadNewGameButton.onClick.AddListener(NewGame);
         gameoverQuitButton.onClick.AddListener(Quit);
         gameoverRestartButton.onClick.AddListener(NewGame);
+
+        Camera camera = FindObjectOfType<Camera>();
+        GetComponent<Canvas>().worldCamera = camera;
+
     }
 
     private void Update()
@@ -112,5 +119,10 @@ public class CanvasManager : MonoBehaviour
     {
         gameoverPanel.gameObject.SetActive(true);
         gameoverMsg.text = msg;
+    }
+
+    public void DisableHealth(int index)
+    {
+        healths[index].gameObject.SetActive(false);
     }
 }
