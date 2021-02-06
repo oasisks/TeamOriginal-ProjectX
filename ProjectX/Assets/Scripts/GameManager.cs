@@ -44,10 +44,10 @@ public class GameManager : MonoBehaviour
         canvas = GameObject.FindGameObjectWithTag("canvas").GetComponent<CanvasManager>();
         score = 0;
         health = healthHearts.Length;
-        restart.onClick.AddListener(canvas.NewGame);
-        quit.onClick.AddListener(canvas.Quit);
-        restart.gameObject.SetActive(false);
-        quit.gameObject.SetActive(false);
+        //restart.onClick.AddListener(canvas.NewGame);
+        //quit.onClick.AddListener(canvas.Quit);
+        //restart.gameObject.SetActive(false);
+        //quit.gameObject.SetActive(false);
         started = true;
     }
 
@@ -139,7 +139,7 @@ public class GameManager : MonoBehaviour
 
     public void increaseScore(int amount) {
         score += amount;
-        //scoreText.text = score.ToString("D4");
+        scoreText.text = score.ToString("D4");
     }
 
     public void loseLife() {
