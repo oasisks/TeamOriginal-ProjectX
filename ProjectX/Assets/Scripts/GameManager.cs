@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     public TMP_Text scoreText;
     public TMP_Text gameoverText;
     public TMP_Text gameoverMsgText;
+    public Button restart;
+    public Button quit;
 
     [HideInInspector]
     public Flag flag;
@@ -40,6 +42,10 @@ public class GameManager : MonoBehaviour
         canvas = GameObject.FindGameObjectWithTag("canvas").GetComponent<CanvasManager>();
         score = 0;
         health = healthHearts.Length;
+        restart.onClick.AddListener(canvas.NewGame);
+        quit.onClick.AddListener(canvas.Quit);
+        restart.gameObject.SetActive(false);
+        quit.gameObject.SetActive(false);
     }
 
     private void Start()
@@ -143,6 +149,8 @@ public class GameManager : MonoBehaviour
 
     public void endGame(string msg) {
         print("END GAME");
+        restart.gameObject.SetActive(true);
+        quit.gameObject.SetActive(true);
         gameoverText.gameObject.SetActive(true);
         gameoverMsgText.gameObject.SetActive(true);
         gameoverMsgText.text = msg;
