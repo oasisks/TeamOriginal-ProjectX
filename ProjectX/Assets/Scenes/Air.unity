@@ -143,6 +143,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 2187449275299233187, guid: dbc6afdf764abde4cb46860c5f8415ee, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2187449275299233187, guid: dbc6afdf764abde4cb46860c5f8415ee, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3213466770229630034, guid: dbc6afdf764abde4cb46860c5f8415ee, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -25
@@ -174,6 +182,14 @@ PrefabInstance:
     - target: {fileID: 5330720876317047826, guid: dbc6afdf764abde4cb46860c5f8415ee, type: 3}
       propertyPath: m_Color.r
       value: 0.3726415
+      objectReference: {fileID: 0}
+    - target: {fileID: 6355110777586451949, guid: dbc6afdf764abde4cb46860c5f8415ee, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6355110777586451949, guid: dbc6afdf764abde4cb46860c5f8415ee, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6587748521457899056, guid: dbc6afdf764abde4cb46860c5f8415ee, type: 3}
       propertyPath: m_Pivot.x
@@ -257,6 +273,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6587748521457899056, guid: dbc6afdf764abde4cb46860c5f8415ee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9044580040393168193, guid: dbc6afdf764abde4cb46860c5f8415ee, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9044580040393168193, guid: dbc6afdf764abde4cb46860c5f8415ee, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -745,7 +769,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 156970242651388533, guid: 51f3e96b803b3e04ea23c12865e1efaf, type: 3}
       propertyPath: tetrisBlocks.Array.size
-      value: 9
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 156970242651388533, guid: 51f3e96b803b3e04ea23c12865e1efaf, type: 3}
       propertyPath: tetrisBlocks.Array.data[9]
