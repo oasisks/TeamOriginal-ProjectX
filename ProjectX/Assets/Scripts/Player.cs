@@ -288,4 +288,10 @@ public class Player : MonoBehaviour
 
         return World.getTile_GlobalPos(transform.position);
     }
+
+    public void StopAllAudio()
+    {
+        walkAudioSource.Stop();
+        jumpAudioSource.Stop();
+    }
 }

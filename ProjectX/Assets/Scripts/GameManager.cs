@@ -28,13 +28,16 @@ public class GameManager : MonoBehaviour
     private Vector3 spawnpos;
     private Vector3 holdpos;
     private Vector3 nextpos;
+    private Player playerScript;
     public bool playerKilled = false;
+
 
 
     private void Awake()
     {
         spawner = transform.GetChild(0).GetComponent<Transform>();
         player = Instantiate(playerPrefab, spawner.transform.position, Quaternion.identity);
+        playerScript = player.GetComponent<Player>();
         canvas = GameObject.FindGameObjectWithTag("canvas").GetComponent<CanvasManager>();
         score = 0;
     }
@@ -58,9 +61,10 @@ public class GameManager : MonoBehaviour
     {
         if (flag.hasPassedLevel)
         {
-            // we show a UI congratulating/switch levels/etc.
-            // UI
+            // we need to disable Audios from player
+            playerScript.StopAllAudio();
             canvas.enableFinishedPanel();
+
             Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
             rb.bodyType = RigidbodyType2D.Static;
             // switches the level
@@ -68,6 +72,7 @@ public class GameManager : MonoBehaviour
             {
                 // we are going to move on to the next scene 
                 //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                Debug.Log("I pressed a key");
             }
             //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
