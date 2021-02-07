@@ -187,6 +187,9 @@ public class Player : MonoBehaviour
         if (health <= 0)
         {
             Destroy(gameObject);
+            Debug.Log("player has died from health");
+            Debug.Log(health);
+
             gm.playerKilled = true;
         }
     }
@@ -283,7 +286,7 @@ public class Player : MonoBehaviour
 
     private TileBase CheckTileWithin() {
         if(World.checkSolidTile_GlobalPos(transform.position)) { // player is inside a solid block, die
-            health = 0;
+            Destroy(gameObject);
         }
 
         return World.getTile_GlobalPos(transform.position);
