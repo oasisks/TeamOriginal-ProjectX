@@ -948,6 +948,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FlyingHat (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7507966344892994532, guid: 89abaae079777fb4a8528723438d265f, type: 3}
+      propertyPath: canMove
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7507966344892994534, guid: 89abaae079777fb4a8528723438d265f, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -15057,6 +15061,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FlyingHat
       objectReference: {fileID: 0}
+    - target: {fileID: 7507966344892994532, guid: 89abaae079777fb4a8528723438d265f, type: 3}
+      propertyPath: canMove
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7507966344892994534, guid: 89abaae079777fb4a8528723438d265f, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -15099,6 +15107,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7507966344892994534, guid: 89abaae079777fb4a8528723438d265f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7507966344892994535, guid: 89abaae079777fb4a8528723438d265f, type: 3}
+      propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
