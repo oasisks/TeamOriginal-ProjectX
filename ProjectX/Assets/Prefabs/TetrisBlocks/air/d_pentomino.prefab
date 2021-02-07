@@ -168,6 +168,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: d_pentomino
       objectReference: {fileID: 0}
+    - target: {fileID: 8921136540149439125, guid: e4172cc3b22d91b4cb8c911e79b15d50, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.75
+      objectReference: {fileID: 0}
     - target: {fileID: 9135885567865857709, guid: e4172cc3b22d91b4cb8c911e79b15d50, type: 3}
       propertyPath: m_RootOrder
       value: 0
