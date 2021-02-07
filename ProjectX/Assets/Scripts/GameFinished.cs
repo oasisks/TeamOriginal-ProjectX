@@ -19,7 +19,7 @@ public class GameFinished : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
     }
-    
+
     private void Quit()
     {
         Application.Quit();
