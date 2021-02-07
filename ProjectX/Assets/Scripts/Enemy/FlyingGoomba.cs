@@ -7,6 +7,7 @@ public class FlyingGoomba : Enemy
     [SerializeField] float speed; 
     [SerializeField] Transform raycastObject;
     [SerializeField] float sightDistance;
+    [SerializeField] public bool canMove;
 
     private void Start()
     {
@@ -15,12 +16,9 @@ public class FlyingGoomba : Enemy
 
     private void Update()
     {
-        Fly();
-    }
-
-    private void Fly()
-    {
-        Horizontal();
+        if(canMove) {
+            Horizontal();
+        }
     }
 
     private void Horizontal()
@@ -42,5 +40,10 @@ public class FlyingGoomba : Enemy
         //if (horizontalHit.collider != null)
         //    Debug.Log(horizontalHit.collider.name);
         transform.Translate(direction * speed * Time.deltaTime);
+    }
+
+    public void Activate()
+    {
+        canMove = true;
     }
 }

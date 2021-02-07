@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using System;
 
 public class tetrisBehavior : MonoBehaviour
 {
@@ -120,7 +121,16 @@ public class tetrisBehavior : MonoBehaviour
                 // we don't want to rotate the enemy
                 if (child.gameObject.layer == LayerMask.NameToLayer("enemy")) {
                     GameObject e = Instantiate(child.gameObject, child.position, Quaternion.identity);
-                    e.GetComponent<Goomba>().Activate();
+                    try { // TODO: this is a BAD way of doing this
+                        e.GetComponent<Goomba>().Activate(); 
+                    } catch (NullReferenceException ex) {
+
+                    }
+                    try { // TODO: this is a BAD way of doing this
+                        e.GetComponent<FlyingGoomba>().Activate(); 
+                    } catch (NullReferenceException ex) {
+
+                    }
                 } else {
                     Instantiate(child.gameObject, child.position, child.rotation);
                 }
