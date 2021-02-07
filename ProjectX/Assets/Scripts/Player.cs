@@ -101,7 +101,7 @@ public class Player : MonoBehaviour
         Vector2 targetVelocity = /*groundDir * */keyVelocity * playerSpeed; // * (isGrounded ? movSpeed : airMovSpeed);
 
 
-        if (isGrounded) walkAudioSource.volume = velocity.x*walkVol;
+        if (isGrounded) walkAudioSource.volume = Mathf.Abs(velocity.x)*walkVol;
         //The change in velocity we need to perform to achieve our target velocity
         Vector2 velocityDelta = targetVelocity - velocity;
 
