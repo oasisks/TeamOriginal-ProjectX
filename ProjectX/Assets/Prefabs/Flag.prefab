@@ -101,6 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationTime: 0.25
   hasPassedLevel: 0
+  confetti: {fileID: 2864140175003977302, guid: ef7fca09b0d9645249fb0765f8cce368, type: 3}
 --- !u!61 &3052836080272483388
 BoxCollider2D:
   m_ObjectHideFlags: 0
