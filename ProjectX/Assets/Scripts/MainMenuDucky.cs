@@ -7,7 +7,9 @@ public class MainMenuDucky : MonoBehaviour
     [SerializeField] Transform startLocation;
     [SerializeField] Transform endLocation;
     [SerializeField] GameObject duckPrefab;
+    [SerializeField] float speed;
 
+    public AudioSource walkingSound;
     private GameObject duck;
 
     private void Start()
@@ -25,10 +27,12 @@ public class MainMenuDucky : MonoBehaviour
         if (duck != null)
         {
             // continuously move towards the end location
-            duck.transform.Translate(Vector3.right * Time.deltaTime);
+            duck.transform.Translate(Vector3.right * Time.deltaTime * speed);
             
-            if (duck.transform.position.x == endLocation.position.x)
+            if (duck.transform.position.x >= endLocation.position.x)
             {
+                Debug.Log("I hit location");
+
                 Destroy(duck);
             }
         }
