@@ -7,15 +7,13 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Necesities")]
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private GameObject[] tetrisBlocks;
 
+    [Header("UI Things")]
     public int score; // this will store the players score
-    public TMP_Text scoreText;
-    public TMP_Text gameoverText;
-    public TMP_Text gameoverMsgText;
-    public Button restart;
-    public Button quit;
+    public RawImage[] healthHearts;
 
     [HideInInspector]
     public Flag flag;
@@ -30,30 +28,22 @@ public class GameManager : MonoBehaviour
     private Vector3 spawnpos;
     private Vector3 holdpos;
     private Vector3 nextpos;
+    private Player playerScript;
+    public bool playerKilled = false;
 
-    public Image[] healthHearts;
-    private int health;
-
-    private bool started;
 
 
     private void Awake()
     {
         spawner = transform.GetChild(0).GetComponent<Transform>();
         player = Instantiate(playerPrefab, spawner.transform.position, Quaternion.identity);
+        playerScript = player.GetComponent<Player>();
         canvas = GameObject.FindGameObjectWithTag("canvas").GetComponent<CanvasManager>();
         score = 0;
-        health = healthHearts.Length;
-        //restart.onClick.AddListener(canvas.NewGame);
-        //quit.onClick.AddListener(canvas.Quit);
-        //restart.gameObject.SetActive(false);
-        //quit.gameObject.SetActive(false);
-        started = true;
     }
 
     private void Start()
-    {   
-        started = false;
+    {  
         current = null;
         hold = null;
 
@@ -63,21 +53,30 @@ public class GameManager : MonoBehaviour
         getPositions();
         createNext();
         spawnNext();
+        // we need to ensure that the game's time scale is always set to one when the game has started
+        Time.timeScale = 1f;
     }
 
     private void Update()
     {
         if (flag.hasPassedLevel)
         {
-            // we show a UI congratulating/switch levels/etc.
-            // UI
+            // we need to disable Audios from player
+            playerScript.StopAllAudio();
             canvas.enableFinishedPanel();
+
             Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
             rb.bodyType = RigidbodyType2D.Static;
             // switches the level
+            if (Input.anyKeyDown)
+            {
+                // we are going to move on to the next scene 
+                //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                Debug.Log("I pressed a key");
+            }
             //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
-        if (started && !playerIsAlive())
+        if (!playerKilled && !playerIsAlive())  // if player is not killed from insufficient life
         {
             // TODO: A UI that shows that the player has died.
             // TODO: A Quit and restart button
@@ -139,25 +138,19 @@ public class GameManager : MonoBehaviour
 
     public void increaseScore(int amount) {
         score += amount;
-        scoreText.text = score.ToString("D4");
+        canvas.UpdateScore(score);
     }
 
-    public void loseLife() {
-        healthHearts[health-1].enabled = false;
-        if(health > 1){
-            health--;
-        } else {
+    public void loseLife(int health) {
+        // update the health UI
+        canvas.DisableHealth(health);
+        if (health == 0)
             endGame("You ran out of lives :(");
-        }
     }
 
     public void endGame(string msg) {
         print(msg);
-        restart.gameObject.SetActive(true);
-        quit.gameObject.SetActive(true);
-        gameoverText.gameObject.SetActive(true);
-        gameoverMsgText.gameObject.SetActive(true);
-        gameoverMsgText.text = msg;
+        canvas.PlayGameoverUI(msg);
         Time.timeScale = 0;
     }
 }

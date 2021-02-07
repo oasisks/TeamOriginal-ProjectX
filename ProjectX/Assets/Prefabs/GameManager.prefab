@@ -84,10 +84,8 @@ MonoBehaviour:
   - {fileID: 4111407182766135728, guid: cd533ac4a44874c4aa55dd90ea6e4ea4, type: 3}
   - {fileID: 2187296411595384653, guid: 8229bb7a2716fb148bcdb07eef4d7e79, type: 3}
   score: 0
-  scoreText: {fileID: 0}
-  gameoverText: {fileID: 0}
-  gameoverMsgText: {fileID: 0}
-  restart: {fileID: 0}
-  quit: {fileID: 0}
+  healthHearts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   flag: {fileID: 0}
-  healthHearts: []

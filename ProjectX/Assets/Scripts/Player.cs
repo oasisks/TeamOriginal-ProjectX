@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
     [SerializeField] ContactFilter2D groundFilter;
 
     [Header("Misc")]
-    [SerializeField] public float health; // we may change this to hearts (i.e. a player has 3 hearts and if all three hearts are gone then you die)
+    [SerializeField] public int health; // we may change this to hearts (i.e. a player has 3 hearts and if all three hearts are gone then you die)
     [SerializeField] private float invincibleTime;
 
     [Header("Tiles")]
@@ -187,6 +187,7 @@ public class Player : MonoBehaviour
         if (health <= 0)
         {
             Destroy(gameObject);
+            gm.playerKilled = true;
         }
     }
 
@@ -247,7 +248,7 @@ public class Player : MonoBehaviour
         animator.SetBool("HitHarmfulObjects", true);
         invincible = true;
         previousTime = Time.time;
-        gm.loseLife();
+        gm.loseLife(health);
     }
 
     private TileBase CheckGround()
@@ -286,5 +287,11 @@ public class Player : MonoBehaviour
         }
 
         return World.getTile_GlobalPos(transform.position);
+    }
+
+    public void StopAllAudio()
+    {
+        walkAudioSource.Stop();
+        jumpAudioSource.Stop();
     }
 }
