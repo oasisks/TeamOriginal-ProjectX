@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
     private bool isGrounded = true;
     private bool invincible = false;
     //private Vector2 jumpForceVector;
-    private Vector3 scaleVector = new Vector3(1, 1, 1);
+    public Vector3 scaleVector = new Vector3(1, 1, 1);
     private Vector3 referencedVelocity = Vector3.zero;
     private float previousTime;
     private float horizontalScalar;
