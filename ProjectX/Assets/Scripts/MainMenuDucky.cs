@@ -34,7 +34,7 @@ public class MainMenuDucky : MonoBehaviour
         }
         else
         {
-            duck = Instantiate(duckPrefab, startLocation.position);
+            duck = Instantiate(duckPrefab, startLocation.position, Quaternion.identity);
         }
     }
 }
