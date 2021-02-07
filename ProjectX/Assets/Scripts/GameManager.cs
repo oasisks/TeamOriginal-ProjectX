@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     private Vector3 nextpos;
     private Player playerScript;
     public bool playerKilled = false;
+    public bool playerDiedFromHeight = false;
 
 
 
@@ -76,6 +77,10 @@ public class GameManager : MonoBehaviour
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             }
             //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+        if (playerDiedFromHeight)
+        {
+            endGame("You are out of bounds :(");
         }
         if (!playerKilled && !playerIsAlive())  // if player is not killed from insufficient life
         {
