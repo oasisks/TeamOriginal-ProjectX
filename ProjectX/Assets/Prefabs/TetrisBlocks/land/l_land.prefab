@@ -210,7 +210,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 773656648371128722, guid: e4172cc3b22d91b4cb8c911e79b15d50, type: 3}
       propertyPath: m_Tiles.Array.data[0].second.m_AllTileFlags
-      value: 1073741825
+      value: 2147483649
       objectReference: {fileID: 0}
     - target: {fileID: 773656648371128722, guid: e4172cc3b22d91b4cb8c911e79b15d50, type: 3}
       propertyPath: m_Tiles.Array.data[1].second.m_AllTileFlags
@@ -230,7 +230,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8144831438089056557, guid: e4172cc3b22d91b4cb8c911e79b15d50, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8144831438089056557, guid: e4172cc3b22d91b4cb8c911e79b15d50, type: 3}
       propertyPath: m_LocalPosition.y
