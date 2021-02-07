@@ -117,7 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fa04987ed95c7b40937c410b40e683a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stabPeriod: 5
+  stabPeriod: 3
   dangerous: 0
 --- !u!68 &7156985622208176768
 EdgeCollider2D:
