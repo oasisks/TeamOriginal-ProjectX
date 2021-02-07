@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
     private bool isGrounded = true;
     private bool invincible = false;
     //private Vector2 jumpForceVector;
-    private Vector3 scaleVector = new Vector3(1, 1, 1);
+    public Vector3 scaleVector = new Vector3(1, 1, 1);
     private Vector3 referencedVelocity = Vector3.zero;
     private float previousTime;
     private float horizontalScalar;
@@ -187,6 +187,9 @@ public class Player : MonoBehaviour
         if (health <= 0)
         {
             Destroy(gameObject);
+            Debug.Log("player has died from health");
+            Debug.Log(health);
+
             gm.playerKilled = true;
         }
     }
@@ -283,7 +286,7 @@ public class Player : MonoBehaviour
 
     private TileBase CheckTileWithin() {
         if(World.checkSolidTile_GlobalPos(transform.position)) { // player is inside a solid block, die
-            health = 0;
+            Destroy(gameObject);
         }
 
         return World.getTile_GlobalPos(transform.position);

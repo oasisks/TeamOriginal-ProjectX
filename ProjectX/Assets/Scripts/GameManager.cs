@@ -73,6 +73,7 @@ public class GameManager : MonoBehaviour
                 // we are going to move on to the next scene 
                 //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
                 Debug.Log("I pressed a key");
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             }
             //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
