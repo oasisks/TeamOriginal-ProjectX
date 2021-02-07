@@ -15,6 +15,8 @@ public class Flag : MonoBehaviour
 
     private QueueAudioClip musicManager;
 
+    public GameObject confetti;
+
     private void Start()
     {
         anim = GetComponent<Animator>();
@@ -39,8 +41,9 @@ public class Flag : MonoBehaviour
             // music
             audiosrc.Play();
             musicManager.StopMusic();
-            
-            // animation 
+            Instantiate(confetti, Vector3.zero, Quaternion.identity);
+
+            // animation
             anim.SetBool("HasPassed", true);
             previousTime = Time.time;
 
